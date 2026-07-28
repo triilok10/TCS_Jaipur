@@ -42,45 +42,166 @@
   border-radius: var(--radius-full);
 }
 
-/* ── Pull Quote ── */
-.about-pullquote-wrapper {
+/* ── Photo Quote Card ── */
+.about-pullquote-container {
+  position: relative;
+  max-width: 100%;
+  margin: 0 auto;
+  z-index: 1;
+}
+
+.about-quote-photo-section {
   max-width: 1140px;
   margin: 0 auto 5rem;
   display: grid;
-  grid-template-columns: 1fr 1.3fr;
+  grid-template-columns: 1fr 1.2fr;
   gap: 4rem;
   align-items: center;
 }
 
-.about-pullquote {
+/* Left: Cinematic photo card */
+.quote-photo-card {
   position: relative;
-  padding: 1.75rem 2.5rem;
-  background: rgba(79, 70, 229, 0.03);
-  border: 1px solid rgba(79, 70, 229, 0.1);
   border-radius: var(--radius-lg);
-  width: 100%;
+  overflow: hidden;
+  aspect-ratio: 3 / 4;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.04);
+  cursor: pointer;
 }
 
-.pullquote-symbol {
-  font-size: 5rem;
-  line-height: 0;
-  color: var(--color-indigo);
-  opacity: 0.15;
-  font-family: Georgia, serif;
+/* Dual stacked images with crossfade */
+.qpc-img-stack {
   position: absolute;
-  top: 2rem;
-  left: 1.25rem;
+  inset: 0;
 }
 
-.pullquote-text {
+.qpc-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transition: opacity 0.6s ease;
+}
+
+.qpc-img-base  { opacity: 1; }
+.qpc-img-hover { opacity: 0; }
+
+.quote-photo-card:hover .qpc-img-base  { opacity: 0; }
+.quote-photo-card:hover .qpc-img-hover { opacity: 1; }
+
+/* Gradient overlay: transparent top → dark bottom */
+.qpc-gradient-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.08) 0%,
+    rgba(0,0,0,0.15) 35%,
+    rgba(0,0,0,0.72) 70%,
+    rgba(0,0,0,0.92) 100%
+  );
+  z-index: 1;
+}
+
+/* Floating event badge — top right */
+.qpc-event-badge {
+  position: absolute;
+  top: 1.1rem;
+  right: 1.1rem;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.22);
+  border-radius: var(--radius-full);
+  padding: 0.35rem 0.85rem;
   font-family: var(--font-title);
-  font-size: 1.5rem;
-  line-height: 1.4;
-  font-weight: 600;
-  color: var(--text-primary);
-  letter-spacing: -0.02em;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #fff;
+  text-transform: uppercase;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
 }
 
+.qpc-badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #f59e0b;
+  animation: pulse-dot 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(0.8); }
+}
+
+/* Quote content — bottom of photo */
+.qpc-quote-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  padding: 1.75rem 1.75rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.qpc-quote-symbol {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 4.5rem;
+  line-height: 0.6;
+  color: rgba(255,255,255,0.35);
+  display: block;
+  margin-bottom: 0.25rem;
+  user-select: none;
+}
+
+.qpc-quote-text {
+  font-family: var(--font-title);
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.45;
+  color: #fff;
+  letter-spacing: -0.01em;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.6);
+}
+
+.qpc-quote-author {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid rgba(255,255,255,0.15);
+}
+
+.qpc-author-name {
+  font-family: var(--font-title);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.01em;
+}
+
+.qpc-author-role {
+  font-family: var(--font-title);
+  font-size: 0.68rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* Right: Bio */
 .about-bio-container {
   display: flex;
   flex-direction: column;
@@ -98,13 +219,6 @@
 .about-bio-body strong {
   color: var(--text-primary);
   font-weight: 600;
-}
-
-.about-pullquote-container {
-  position: relative;
-  max-width: 100%;
-  margin: 0 auto;
-  z-index: 1;
 }
 
 /* ── Hashtag Pills ── */
@@ -728,17 +842,22 @@
 
 /* ── Responsive ── */
 @media (max-width: 900px) {
-  .about-pullquote-wrapper {
+  .about-quote-photo-section {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 2.5rem;
   }
-  
+
+  .quote-photo-card {
+    aspect-ratio: 4 / 3;
+    max-height: 380px;
+  }
+
   .about-bio-body {
-    text-align: center;
+    text-align: left;
   }
   
   .about-hashtags {
-    justify-content: center;
+    justify-content: flex-start;
   }
 
   .bento-grid {
