@@ -44,13 +44,12 @@
 
 /* ── Pull Quote ── */
 .about-pullquote-wrapper {
-  max-width: 800px;
+  max-width: 1140px;
   margin: 0 auto 5rem;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 4rem;
   align-items: center;
-  gap: 1.5rem;
-  text-align: center;
 }
 
 .about-pullquote {
@@ -82,13 +81,18 @@
   letter-spacing: -0.02em;
 }
 
+.about-bio-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
 .about-bio-body {
   font-size: 1.05rem;
   line-height: 1.7;
   color: var(--text-secondary);
-  text-align: center;
-  max-width: 900px;
-  margin: 0 auto;
+  text-align: left;
+  max-width: 100%;
 }
 
 .about-bio-body strong {
@@ -98,18 +102,17 @@
 
 .about-pullquote-container {
   position: relative;
-  max-width: 900px;
+  max-width: 100%;
   margin: 0 auto;
   z-index: 1;
 }
 
 /* ── Hashtag Pills ── */
 .about-hashtags {
-  margin-top: 2rem;
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .hashtag-pill {
@@ -725,6 +728,19 @@
 
 /* ── Responsive ── */
 @media (max-width: 900px) {
+  .about-pullquote-wrapper {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .about-bio-body {
+    text-align: center;
+  }
+  
+  .about-hashtags {
+    justify-content: center;
+  }
+
   .bento-grid {
     grid-template-columns: 1fr;
   }
