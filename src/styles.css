@@ -230,9 +230,14 @@ a {
   padding: 0 2rem;
 }
 
-@media (max-width: 768px) {
-  .container { padding: 0 1.25rem; }
+@media (max-width: 960px) {
+  .container { padding: 0 1.5rem; }
 }
+
+@media (max-width: 600px) {
+  .container { padding: 0 1rem; }
+}
+
 
 /* ── Keyframe Animations ── */
 @keyframes float {

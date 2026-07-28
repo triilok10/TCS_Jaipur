@@ -135,10 +135,42 @@
   letter-spacing: 0.02em;
 }
 
-/* Mobile responsive adjustments */
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .nav-links {
+    gap: 1.5rem;
+  }
+
+  .navbar {
+    height: 72px;
+  }
+
+  .navbar.scrolled {
+    height: 60px;
+  }
+
+  .brand {
+    font-size: 1.2rem;
+  }
+}
+
 @media (max-width: 600px) {
   .status-badge {
     display: none;
-    /* Hide badge on very small screens to make room */
+  }
+
+  .nav-link {
+    font-size: 0.85rem;
+  }
+
+  .nav-links {
+    gap: 1.1rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .nav-links {
+    display: none;
   }
 }
