@@ -1,0 +1,139 @@
+<section class="hero-section container">
+  <!-- Ambient background glows -->
+  <div class="ambient-glow ambient-glow-1"></div>
+  <div class="ambient-glow ambient-glow-2"></div>
+
+  <div class="hero-content">
+    
+    <!-- Profile & Intro Column -->
+    <div class="hero-intro animate-slide-up">
+      <div class="hero-header-block">
+        <!-- Floating Profile Card (Bento/Polaroid hybrid style) -->
+        <div class="profile-card animate-float">
+          <div class="profile-card-image">
+            <img src="/tcs-profile.jpg" alt="Trilok Chand Swami (TCS)" class="profile-img">
+          </div>
+          <div class="profile-card-footer">
+            <span class="status-indicator-dot"></span>
+            <span class="status-indicator-label">Trailblazer in making</span>
+          </div>
+        </div>
+        
+        <div class="title-meta-block">
+          <span class="badge-role">Brand Ambassador · Bharat Dreamin' 2026</span>
+          <h1 class="hero-title">
+            TRILOK CHAND SWAMI
+          </h1>
+          <p class="hero-subtitle">
+            People here call me <span class="highlight-tcs">TCS</span>.<br>This is where you get to know why.
+          </p>
+        </div>
+      </div>
+      
+      <div class="hero-philosophy">
+        <p class="philosophy-title">Problem Solver. Developer.</p>
+        <p class="philosophy-text">
+          Coordinating across <span class="glow-accent">multiple tech stacks</span>. Instead of being boxed in as just a .NET or Angular developer, I solve complex issues and <span class="glow-accent">close the gaps</span>.
+        </p>
+      </div>
+      
+      <div class="hero-actions">
+        <a href="#connect" class="btn btn-primary">
+          <span>Get in touch</span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+        </a>
+        <a href="#about" class="btn btn-secondary">
+          <span>Read my story</span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"></path></svg>
+        </a>
+      </div>
+    </div>
+    
+    <!-- Interactive API Client Column -->
+    <div class="hero-visualizer animate-slide-up">
+      <div class="api-card glass-panel">
+        
+        <!-- OS/Browser Header -->
+        <div class="api-card-header">
+          <div class="window-controls">
+            <span class="dot dot-close"></span>
+            <span class="dot dot-minimize"></span>
+            <span class="dot dot-expand"></span>
+          </div>
+          
+          <div class="browser-address-container">
+            <div class="browser-nav-arrows">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </div>
+            <div class="browser-address-bar">
+              <svg class="secure-icon" width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+              <span class="url-protocol">https://</span><span class="url-domain">api.tcs.jaipur</span><span class="url-path">/trilok-chand-swami</span>
+            </div>
+          </div>
+          
+          <span class="tab-label">whoami.json</span>
+        </div>
+        
+        <!-- API request button bar -->
+        <div class="api-request-bar">
+          <span class="http-method">GET</span>
+          <span class="request-desc">Request Trilok's profiles payload</span>
+          <button (click)="sendRequest()" [class.loading]="isRequestLoading()" [class.pulse]="!isRequestSent()" class="btn-send">
+            @if (isRequestLoading()) {
+              <div class="spinner"></div>
+            } @else {
+              <span>Send Request</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+            }
+          </button>
+        </div>
+        
+        <!-- REST Response Panel -->
+        <div class="api-response-panel">
+          @if (!isRequestSent() && !isRequestLoading()) {
+            <div class="response-placeholder">
+              <div class="placeholder-icon-wrapper">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              </div>
+              <p class="placeholder-text">// Press "Send Request" to fetch details from the local host endpoint...</p>
+              <button (click)="sendRequest()" class="btn-api-hint">Trigger GET Request</button>
+            </div>
+          }
+          
+          @if (isRequestLoading()) {
+            <div class="response-loading">
+              <div class="pulse-ring"></div>
+              <p>Fetching whoami.json from Jaipur API...</p>
+            </div>
+          }
+          
+          @if (isRequestSent() && !isRequestLoading()) {
+            <div class="response-metadata">
+              <span class="meta-status">Status: 200 OK</span>
+              <span class="meta-time">Time: 22ms</span>
+              <span class="meta-size">Size: 260 B</span>
+            </div>
+            
+            <pre class="code-block"><code><span class="punctuation">&#123;</span>
+  <span class="key">"role"</span><span class="punctuation">:</span> <span class="string">"Problem Solver & Developer"</span><span class="punctuation">,</span>
+  <span class="key">"based_in"</span><span class="punctuation">:</span> <span class="string">"Jaipur, IN"</span><span class="punctuation">,</span>
+  <span class="key">"stack"</span><span class="punctuation">:</span> <span class="punctuation">[</span>
+    <span class="string">".NET Core"</span><span class="punctuation">,</span>
+    <span class="string">"Angular"</span><span class="punctuation">,</span>
+    <span class="string">"SQL Server"</span>
+  <span class="punctuation">]</span><span class="punctuation">,</span>
+  <span class="key">"currently"</span><span class="punctuation">:</span> <span class="punctuation">[</span>
+    <span class="string">"Azure"</span><span class="punctuation">,</span>
+    <span class="string">"Docker"</span>
+  <span class="punctuation">]</span><span class="punctuation">,</span>
+  <span class="key">"status"</span><span class="punctuation">:</span> <span class="string">"open to connect"</span>
+<span class="punctuation">&#125;</span></code></pre>
+          }
+        </div>
+        
+      </div>
+    </div>
+    
+  </div>
+</section>

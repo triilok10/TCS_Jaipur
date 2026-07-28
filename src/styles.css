@@ -1,1 +1,367 @@
-/* You can add global styles to this file, and also import other style files */
+/* -------------------------------------------------------------
+   TCS Jaipur — Personal Brand Web Application Design System (Stark Tech Minimalist)
+   ------------------------------------------------------------- */
+
+:root {
+  /* Stark Tech Minimalist Palette - Crisp, clean, universally-liked tech style */
+  --bg-primary: #ffffff;       /* Pure white canvas */
+  --bg-secondary: #f8fafc;     /* Slate 50 - Card background, panels */
+  --bg-tertiary: #f1f5f9;      /* Slate 100 - Nested layouts, code blocks */
+  
+  --border-color: #e2e8f0;     /* Slate 200 - Translucent hairline lines */
+  --border-hover: #cbd5e1;     /* Slate 300 - Focus dividers */
+
+  --text-primary: #0f172a;     /* Slate 900 - Dark charcoal text */
+  --text-secondary: #475569;   /* Slate 600 - Secondary descriptors */
+  --text-muted: #64748b;       /* Slate 500 - Meta copy */
+  --text-light: #94a3b8;       /* Slate 400 - Placeholder text */
+
+  /* Branding Accents - Tech Blue Theme */
+  --color-pink-jaipur: #3b82f6; /* Blue 500 (Previously Pink) */
+  --color-pink-glow: rgba(59, 130, 246, 0.08);
+  
+  --color-violet: #1d4ed8;      /* Blue 700 (Previously Violet) */
+  --color-violet-glow: rgba(29, 78, 216, 0.08);
+  
+  --color-amber: #0ea5e9;       /* Sky 500 (Previously Amber) */
+  --color-amber-glow: rgba(14, 165, 233, 0.08);
+
+  --color-green: #10b981;       /* Success emerald */
+  --color-green-glow: rgba(16, 185, 129, 0.08);
+  
+  --color-blue: #2563eb;        /* Info blue */
+  --color-blue-glow: rgba(37, 99, 235, 0.08);
+
+  /* Gradients */
+  --gradient-brand: linear-gradient(135deg, var(--color-violet) 0%, var(--color-pink-jaipur) 50%, var(--color-amber) 100%);
+  --gradient-brand-subtle: linear-gradient(135deg, rgba(29, 78, 216, 0.03) 0%, rgba(59, 130, 246, 0.03) 50%, rgba(14, 165, 233, 0.03) 100%);
+  --gradient-bg-glow: radial-gradient(circle at 50% -100px, rgba(29, 78, 216, 0.06) 0%, rgba(59, 130, 246, 0.02) 40%, transparent 70%);
+
+  /* Typography */
+  --font-title: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-code: 'Fira Code', 'Courier New', Courier, monospace;
+
+  /* Shadows - Minimal and crisp */
+  --shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.02);
+  --shadow-md: 0 4px 12px -1px rgba(15, 23, 42, 0.03), 0 2px 4px -2px rgba(15, 23, 42, 0.03);
+  --shadow-lg: 0 12px 24px -3px rgba(15, 23, 42, 0.04), 0 4px 8px -4px rgba(15, 23, 42, 0.04);
+  --shadow-xl: 0 24px 48px -6px rgba(15, 23, 42, 0.06), 0 10px 16px -8px rgba(15, 23, 42, 0.06);
+  --shadow-inner: inset 0 1px 0 0 rgba(255, 255, 255, 0.8);
+
+  /* Border Radii */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 30px;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition-fast: 0.12s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Global Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Background Grids & Ambient Glows */
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1000px;
+  background-image: var(--gradient-bg-glow);
+  pointer-events: none;
+  z-index: -2;
+}
+
+body::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 900px;
+  background-image: radial-gradient(rgba(15, 23, 42, 0.02) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.8;
+}
+
+/* Scrollbar Customization */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-light);
+}
+
+/* Typography elements */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-title);
+  color: var(--text-primary);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+p {
+  color: var(--text-secondary);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: var(--transition-fast);
+}
+
+/* Common Interactive Classes */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-title);
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  gap: 0.5rem;
+  border: 1px solid transparent;
+}
+
+.btn-primary {
+  background: var(--color-violet);
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+}
+
+.btn-primary:hover {
+  background-color: #4f46e5;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(99, 102, 241, 0.3);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-secondary:hover {
+  background-color: var(--bg-secondary);
+  border-color: var(--border-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-secondary:active {
+  transform: translateY(0);
+}
+
+/* Accent Gradients Text */
+.text-gradient {
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glassmorphism Panel */
+.glass-panel {
+  background-color: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-inner), var(--shadow-md);
+}
+
+/* Layout utilities */
+.container {
+  width: 100%;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1.25rem;
+  }
+}
+
+/* Keyframe Animations */
+@keyframes float {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(1deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 0.9; }
+}
+
+@keyframes terminalBlink {
+  50% { opacity: 0; }
+}
+
+@keyframes slideUpIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-slide-up {
+  animation: slideUpIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  gap: 0.35rem;
+}
+
+/* Global Footer Styles */
+.global-footer {
+  background-color: var(--bg-secondary);
+  border-top: 1px solid var(--border-color);
+  padding: 3rem 0;
+  color: var(--text-secondary);
+}
+
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.25rem;
+}
+
+.footer-brand-title {
+  font-family: var(--font-title);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.footer-quote {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+
+.footer-divider {
+  width: 100%;
+  max-width: 140px;
+  height: 1px;
+  background-color: var(--border-color);
+}
+
+.footer-meta {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  flex-wrap: wrap;
+  gap: 1rem;
+  border-top: 1px solid var(--border-color);
+  padding-top: 1.25rem;
+}
+
+.jaipur-link {
+  color: var(--color-pink-jaipur);
+  font-weight: 600;
+}
+
+.jaipur-link:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  .footer-meta {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* Giant Watermark Backdrop */
+.brand-watermark {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 16vw;
+  font-weight: 900;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(99, 102, 241, 0.05);
+  font-family: var(--font-title);
+  pointer-events: none;
+  z-index: -3;
+  white-space: nowrap;
+  letter-spacing: -0.04em;
+  user-select: none;
+}

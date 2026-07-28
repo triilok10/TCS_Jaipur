@@ -1,0 +1,18 @@
+<header [class.scrolled]="isScrolled()" class="navbar">
+  <div class="navbar-container container">
+    <a routerLink="/" class="brand">
+      <span class="brand-text">TCS</span><span class="brand-jaipur">Jaipur</span>
+      <span class="brand-dot"></span>
+    </a>
+    
+    <nav class="nav-links">
+      <a routerLink="/" fragment="about" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">About</a>
+      <a routerLink="/connect" class="nav-link" routerLinkActive="active">Connect</a>
+    </nav>
+    
+    <div class="status-badge">
+      <span class="status-dot"></span>
+      <span class="status-text">Open to connect</span>
+    </div>
+  </div>
+</header>

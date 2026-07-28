@@ -1,0 +1,35 @@
+<section class="talks-page-wrapper">
+  <div class="container">
+    <div class="talks-page-header animate-slide-up">
+      <span class="header-badge">Milestones</span>
+      <h1 class="text-gradient">Happy Talks & Timeline</h1>
+      <p>A journey of community speaking, tech sharing, and career milestones.</p>
+      
+      <div class="nav-back">
+        <a routerLink="/connect" class="btn btn-secondary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m15 18-6-6 6-6"/>
+          </svg>
+          Back to Connect
+        </a>
+      </div>
+    </div>
+
+    <div class="timeline-container animate-slide-up" style="animation-delay: 0.1s;">
+      <div class="timeline">
+        <div class="timeline-item" *ngFor="let item of timelineEvents; let i = index">
+          <div class="timeline-marker">
+            <div class="marker-dot"></div>
+            <div class="marker-line" *ngIf="i !== timelineEvents.length - 1"></div>
+          </div>
+          <div class="timeline-content glass-panel">
+            <span class="timeline-year">{{ item.year }}</span>
+            <h3 class="timeline-title">{{ item.title }}</h3>
+            <h4 class="timeline-event">{{ item.event }}</h4>
+            <p class="timeline-desc">{{ item.description }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

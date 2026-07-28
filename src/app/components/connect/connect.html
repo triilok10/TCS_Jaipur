@@ -1,0 +1,244 @@
+<div class="connect-page-wrapper container animate-slide-up">
+  
+  <!-- Page Header -->
+  <div class="connect-page-header">
+    <span class="header-badge">Connect & Activity</span>
+    <h1 class="page-title">Talks, Highlights & Contact</h1>
+    <div class="title-divider"></div>
+    <p class="page-description">
+      Sharing stories of community talks, system milestones, and an interactive portal to discuss your next big ideas.
+    </p>
+  </div>
+  
+  <div class="connect-page-grid">
+    
+    <!-- Left Column: Navigation Cards -->
+    <div class="sub-nav-column">
+      <h3 class="column-heading">
+        <span class="heading-icon">🧭</span>
+        <span>Explore More</span>
+      </h3>
+      
+      <div class="nav-cards-container">
+        
+        <!-- Happy Talks Card -->
+        <div class="nav-bento-card glass-panel">
+          <div class="card-icon-wrapper">
+            <span class="emoji-icon">🎙️</span>
+          </div>
+          <div class="card-content">
+            <h4>Happy Talks</h4>
+            <p>Explore my timeline of delivered presentations, volunteer initiatives, and tech community highlights.</p>
+            <a routerLink="/talks" class="btn btn-secondary card-btn">
+              View Happy Talks
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Scan to Connect QR Card -->
+        <div class="nav-bento-card glass-panel">
+          <div class="card-icon-wrapper">
+            <span class="emoji-icon">📱</span>
+          </div>
+          <div class="card-content">
+            <h4>Scan to Connect</h4>
+            <p>Need a quick way to save my coordinates? View generated QR codes to instantly sync on LinkedIn or my portfolio.</p>
+            <a routerLink="/qr" class="btn btn-secondary card-btn">
+              Get QR Codes
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    
+    <!-- Right Column: Interactive Portal & Form -->
+    <div class="interactive-column">
+      
+      <!-- Contact Form Container -->
+      <div class="form-container-card glass-panel">
+        @if (!isFormSubmitted()) {
+          <div class="form-intro">
+            <h3 class="form-heading">Send a Message</h3>
+            <p class="form-subtext">Drop your details below. I'll get back to you shortly.</p>
+          </div>
+          
+          <form #contactForm="ngForm" (ngSubmit)="submitContactForm(contactForm)" novalidate class="contact-form-element">
+            
+            <!-- Name Input Group -->
+            <div class="form-group">
+              <label for="name" class="field-label">Full Name</label>
+              <div class="input-wrapper">
+                <input 
+                  type="text" 
+                  id="name" 
+                  [(ngModel)]="formData.name" 
+                  name="name" 
+                  required 
+                  #nameField="ngModel" 
+                  [class.invalid-field]="nameField.invalid && nameField.touched"
+                  placeholder="e.g. Ram Prasad"
+                  class="form-input">
+              </div>
+              @if (nameField.invalid && nameField.touched) {
+                <span class="field-error-message">Name is required.</span>
+              }
+            </div>
+            
+            <!-- Email Input Group -->
+            <div class="form-group">
+              <label for="email" class="field-label">Email Address</label>
+              <div class="input-wrapper">
+                <input 
+                  type="email" 
+                  id="email" 
+                  [(ngModel)]="formData.email" 
+                  name="email" 
+                  required 
+                  email
+                  #emailField="ngModel" 
+                  [class.invalid-field]="emailField.invalid && emailField.touched"
+                  placeholder="e.g. user@example.com"
+                  class="form-input">
+              </div>
+              @if (emailField.invalid && emailField.touched) {
+                <span class="field-error-message">Please enter a valid email address.</span>
+              }
+            </div>
+            
+            <!-- Subject Selector -->
+            <div class="form-group">
+              <label for="subject" class="field-label">Subject / Topic</label>
+              <div class="input-wrapper">
+                <select 
+                  id="subject" 
+                  [(ngModel)]="formData.subject" 
+                  name="subject" 
+                  required
+                  class="form-input select-input">
+                  <option value="general">General Tech Conversation</option>
+                  <option value="coffee">☕ Coffee Chat Request</option>
+                  <option value="call">📞 Video Call (15m)</option>
+                  <option value="talk">🎙️ Speaking Engagement</option>
+                  <option value="opportunity">💼 Project Collaboration</option>
+                </select>
+              </div>
+            </div>
+            
+            <!-- Message Input Area -->
+            <div class="form-group">
+              <label for="message" class="field-label">Message / Details</label>
+              <div class="input-wrapper">
+                <textarea 
+                  id="message" 
+                  [(ngModel)]="formData.message" 
+                  name="message" 
+                  required 
+                  minlength="10"
+                  #messageField="ngModel" 
+                  [class.invalid-field]="messageField.invalid && messageField.touched"
+                  placeholder="Tell me about your thoughts or projects..."
+                  rows="4"
+                  class="form-input textarea-input"></textarea>
+              </div>
+              @if (messageField.invalid && messageField.touched) {
+                @if (messageField.errors?.['required']) {
+                  <span class="field-error-message">Message text is required.</span>
+                } @else if (messageField.errors?.['minlength']) {
+                  <span class="field-error-message">Message must be at least 10 characters.</span>
+                }
+              }
+            </div>
+            
+            <!-- Submit Button -->
+            <button 
+              type="submit" 
+              [disabled]="isFormSubmitting()" 
+              class="btn btn-primary btn-submit-form">
+              @if (isFormSubmitting()) {
+                <div class="form-spinner"></div>
+                <span>Sending Message...</span>
+              } @else {
+                <span>Send Message</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+              }
+            </button>
+            
+          </form>
+        } @else {
+          <!-- Form Submission Success Screen -->
+          <div class="form-success-card">
+            <div class="success-icon-wrapper">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </div>
+            <h3 class="success-title">Message Received!</h3>
+            <p class="success-text">
+              Thanks for reaching out, <strong>{{ formData.name }}</strong>! Your details have been captured successfully. I will review and follow up with you at <strong>{{ formData.email }}</strong> shortly.
+            </p>
+            <button (click)="resetContactForm()" class="btn btn-secondary btn-reset-success">
+              Send another message
+            </button>
+          </div>
+        }
+      </div>
+      
+      <!-- Interactive Terminal Card -->
+      <div class="terminal-container-card">
+        <div class="terminal-window">
+          
+          <div class="terminal-header">
+            <div class="terminal-title">trilok@jaipur:~</div>
+            <span class="terminal-shell-badge">bash</span>
+          </div>
+          
+          <div #terminalBody class="terminal-body">
+            @for (line of terminalLines(); track $index) {
+              <div class="terminal-row" [ngClass]="line.type">
+                @if (line.type === 'input') {
+                  <span class="prompt-symbol">trilok@jaipur:~$</span>
+                  <span class="line-text">{{ line.text }}</span>
+                } @else {
+                  <span class="line-text">{{ line.text }}</span>
+                }
+              </div>
+            }
+            
+            <form (submit)="handleTerminalSubmit($event)" class="terminal-input-row">
+              <span class="prompt-symbol">trilok@jaipur:~$</span>
+              <input 
+                type="text" 
+                [(ngModel)]="terminalInput" 
+                name="terminalInput" 
+                class="terminal-field" 
+                placeholder="type help..." 
+                autocomplete="off"
+                autocapitalize="off"
+                spellcheck="false">
+              <span class="terminal-cursor"></span>
+            </form>
+          </div>
+          
+        </div>
+        
+        <div class="cli-quick-panel">
+          <span class="quick-label">Or run:</span>
+          <div class="quick-btns">
+            @for (cmd of quickCommands; track cmd) {
+              <button (click)="runQuickCommand(cmd)" class="btn-quick-cmd">
+                {{ cmd }}
+              </button>
+            }
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    
+  </div>
+</div>
