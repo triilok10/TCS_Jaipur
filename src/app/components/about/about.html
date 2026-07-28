@@ -1,72 +1,246 @@
 <section id="about" class="about-section">
   <div class="container">
-    
-    <!-- Section Header -->
+
+    <!-- ── Section Header ── -->
     <div class="section-header">
-      <span class="section-subtitle">Read My Story</span>
+      <span class="section-eyebrow">Read My Story</span>
       <h2 class="section-title">Philosophy & Focus</h2>
       <div class="header-divider"></div>
     </div>
-    
-    <!-- Lead Quote & Bio details -->
-    <div class="about-bio-container">
-      <p class="bio-lead">
-        “Every line of code I write carries a question: does this make someone's life better?”
-      </p>
-      <p class="bio-body">
-        I'm a Full Stack Engineer who specialises in building enterprise-grade applications that are secure, scalable, and future-ready. My core stack is <strong>.NET Core</strong>, <strong>Angular</strong>, and <strong>SQL Server</strong>, with hands-on experience in Azure and DevOps practices. I don't just ship features — I think about architecture, resilience, and what the system needs to look like two years from now.
-      </p>
-    </div>
-    
-    <!-- Premium Bento Grid Layout -->
-    <div class="bento-grid">
-      
-      <!-- Card 1: Systems built to be trusted -->
-      <div class="bento-card card-systems glass-panel">
-        <div class="card-icon-wrapper bg-violet">
-          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2.5" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-        </div>
-        <div class="bento-card-content">
-          <h3 class="bento-card-title">Systems built to be trusted</h3>
-          <p class="bento-card-text">
-            Designing cloud-friendly applications with role-based approval workflows and full audit trails — built to hold up under real, high-stakes usage.
-          </p>
-        </div>
-      </div>
-      
-      <!-- Card 2: Modernising legacy systems -->
-      <div class="bento-card card-modernisation glass-panel">
-        <div class="card-icon-wrapper bg-pink">
-          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2.5" fill="none"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path></svg>
-        </div>
-        <div class="bento-card-content">
-          <h3 class="bento-card-title">Modernising what's outdated</h3>
-          <p class="bento-card-text">
-            Taking legacy systems and rebuilding them with clean architecture, secure integrations, and CI/CD-ready deployment pipelines.
-          </p>
-        </div>
-      </div>
-      
-      <!-- Card 3: Engineering & Community (Spans columns) -->
-      <div class="bento-card card-community glass-panel">
-        <div class="community-visual-block">
-          <div class="community-badge-tag">Volunteer Impact</div>
-          <div class="community-logo-mock">BD '26</div>
-        </div>
-        <div class="bento-card-content">
-          <div class="card-icon-wrapper bg-amber">
-            <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2.5" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-          </div>
-          <h3 class="bento-card-title">Engineering & Community</h3>
-          <p class="bento-card-text">
-            Engineering is only half the story. I'm a proud volunteer and Brand Ambassador at <strong>Bharat Dreamin' 2026</strong> — an event bringing together India's builders, dreamers, and change-makers. The same values that make great software — trust, clarity, and vision — are what make great communities. I don't just build software. I build toward something.
-          </p>
-        </div>
-      </div>
-      
-    </div>
-    
 
-    
+    <!-- ── Pull Quote ── -->
+    <div class="about-pullquote-wrapper">
+      <div class="about-pullquote">
+        <span class="pullquote-symbol">"</span>
+        <p class="pullquote-text">Every line of code I write carries a question: does this make someone's life better?
+        </p>
+      </div>
+      <p class="about-bio-body">
+        I'm a Full Stack Engineer who specialises in building enterprise-grade applications that are secure, scalable,
+        and future-ready.
+        I don't just ship features — I think about <strong>architecture, resilience</strong>, and what the system needs
+        to look like two years from now.
+      </p>
+    </div>
+
+    <!-- ── Capability Cards: Bento Grid ── -->
+    <div class="bento-grid">
+
+      <!-- Card 1: Building systems people trust -->
+      <div class="bento-card card-systems" id="about-card-systems">
+        <div class="bento-card-top">
+          <div class="card-icon-wrapper icon-violet">
+            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2.2" fill="none">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+          </div>
+          <span class="bento-card-number">01</span>
+        </div>
+        <h3 class="bento-card-title">Building systems people trust</h3>
+        <p class="bento-card-text">
+          Designing cloud-friendly applications with role-based approval workflows and full audit trails — built to hold
+          up under real, high-stakes usage.
+        </p>
+        <div class="bento-card-footer">
+          <span class="card-tag">Cloud</span>
+          <span class="card-tag">RBAC</span>
+          <span class="card-tag">Audit Trails</span>
+        </div>
+      </div>
+
+      <!-- Card 2: Modernising what's outdated -->
+      <div class="bento-card card-modernisation" id="about-card-modernise">
+        <div class="bento-card-top">
+          <div class="card-icon-wrapper icon-rose">
+            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2.2" fill="none">
+              <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path>
+            </svg>
+          </div>
+          <span class="bento-card-number">02</span>
+        </div>
+        <h3 class="bento-card-title">Modernising what's outdated</h3>
+        <p class="bento-card-text">
+          Taking legacy systems and rebuilding them with clean architecture, secure integrations, and CI/CD-ready
+          deployment pipelines.
+        </p>
+        <div class="bento-card-footer">
+          <span class="card-tag">Clean Arch</span>
+          <span class="card-tag">CI/CD</span>
+          <span class="card-tag">Migration</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── Human + AI Section ── -->
+    <div class="human-ai-section" id="about-human-ai">
+      <div class="section-label-row">
+        <div class="section-label-line"></div>
+        <span class="section-label-text">Human + AI</span>
+        <div class="section-label-line"></div>
+      </div>
+
+      <div class="human-ai-card glass-panel">
+        <div class="human-ai-header">
+          <div class="ai-icon-badge">
+            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+              <line x1="9" y1="9" x2="9.01" y2="9"></line>
+              <line x1="15" y1="9" x2="15.01" y2="9"></line>
+            </svg>
+          </div>
+          <div>
+            <h3 class="human-ai-title">Human curiosity, AI-accelerated execution</h3>
+            <p class="human-ai-subtitle">
+              AI didn't change what I care about — it changed how fast I can act on it. I use it to draft boilerplate,
+              explore edge cases, and pressure-test my own assumptions before code ever reaches a pull request. The
+              judgment calls stay mine. Curiosity is still human work. Execution just got faster.
+            </p>
+          </div>
+        </div>
+
+        <!-- Two-column table -->
+        <div class="human-ai-table">
+          <div class="hai-column hai-human">
+            <div class="hai-col-header">
+              <span class="hai-col-dot dot-human"></span>
+              <span class="hai-col-label">What stays human</span>
+            </div>
+            <ul class="hai-list">
+              <li class="hai-list-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                Architecture decisions
+              </li>
+              <li class="hai-list-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                Trade-off calls
+              </li>
+              <li class="hai-list-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                What the system owes its users
+              </li>
+            </ul>
+          </div>
+
+          <div class="hai-column-divider"></div>
+
+          <div class="hai-column hai-ai">
+            <div class="hai-col-header">
+              <span class="hai-col-dot dot-ai"></span>
+              <span class="hai-col-label">What AI accelerates</span>
+            </div>
+            <ul class="hai-list">
+              <li class="hai-list-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                Boilerplate & scaffolding
+              </li>
+              <li class="hai-list-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                Edge-case exploration
+              </li>
+              <li class="hai-list-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                First-draft debugging
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Right Now Section ── -->
+    <div class="right-now-section" id="about-right-now">
+      <div class="section-label-row">
+        <div class="section-label-line"></div>
+        <span class="section-label-text">Right now</span>
+        <div class="section-label-line"></div>
+      </div>
+
+      <div class="right-now-grid">
+
+        <div class="now-card" id="about-now-building">
+          <div class="now-card-icon icon-gold">
+            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="9" y1="3" x2="9" y2="21"></line>
+            </svg>
+          </div>
+          <div class="now-card-content">
+            <span class="now-label">Building</span>
+            <p class="now-value">Enterprise features I'm actively shipping</p>
+          </div>
+        </div>
+
+        <div class="now-card" id="about-now-learning">
+          <div class="now-card-icon icon-violet">
+            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none">
+              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+            </svg>
+          </div>
+          <div class="now-card-content">
+            <span class="now-label">Learning</span>
+            <p class="now-value">Leveling up on the next chapter of my stack</p>
+          </div>
+        </div>
+
+        <div class="now-card now-card-featured" id="about-now-prepping">
+          <div class="now-card-icon icon-rose">
+            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none">
+              <polygon
+                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+              </polygon>
+            </svg>
+          </div>
+          <div class="now-card-content">
+            <span class="now-label">Prepping</span>
+            <p class="now-value">Bharat Dreamin' 2026 — helping bring India's Trailblazer community together as Brand
+              Ambassador</p>
+          </div>
+          <span class="now-featured-badge">BD '26</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── Volunteer / Community Bento ── -->
+    <div class="community-bento" id="about-community">
+      <div class="community-visual-side">
+        <div class="community-badge-pill">Volunteer Impact</div>
+        <div class="community-bd-mark">BD '26</div>
+        <p class="community-visual-caption">Bharat Dreamin' 2026</p>
+      </div>
+      <div class="community-content-side">
+        <div class="card-icon-wrapper icon-gold">
+          <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2.2" fill="none">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+        </div>
+        <h3 class="community-title">Engineering & Community</h3>
+        <p class="community-body">
+          Engineering is only half the story. I'm a proud volunteer and Brand Ambassador at <strong>Bharat Dreamin'
+            2026</strong> — an event bringing together India's builders, dreamers, and change-makers. The same values
+          that make great software — trust, clarity, and vision — are what make great communities.
+        </p>
+        <p class="community-tagline">I don't just build software. I build toward something.</p>
+      </div>
+    </div>
+
   </div>
 </section>

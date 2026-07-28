@@ -27,7 +27,7 @@
   width: 90px;
   height: 90px;
   border-radius: var(--radius-full);
-  border: 3px solid #ffffff;
+  border: 3px solid var(--bg-primary);
   box-shadow: var(--shadow-lg), 0 0 0 1px var(--border-color);
   margin-bottom: 1.25rem;
   overflow: hidden;
@@ -54,7 +54,7 @@
   font-family: var(--font-code);
   font-size: 0.8rem;
   font-weight: 600;
-  color: var(--color-pink-jaipur);
+  color: var(--color-indigo);
   margin-bottom: 1rem;
 }
 
@@ -109,10 +109,21 @@
   box-shadow: var(--shadow-sm);
 }
 
-.bg-linkedin { background-color: #0077b5; }
-.bg-github { background-color: #181717; }
-.bg-twitter { background-color: #0f1419; }
-.bg-email { background-color: var(--color-pink-jaipur); }
+.bg-linkedin {
+  background-color: #0077b5;
+}
+
+.bg-github {
+  background-color: #181717;
+}
+
+.bg-twitter {
+  background-color: #0f1419;
+}
+
+.bg-email {
+  background-color: var(--color-rose);
+}
 
 .social-details {
   display: flex;
