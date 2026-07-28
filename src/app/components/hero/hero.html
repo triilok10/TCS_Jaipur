@@ -43,14 +43,14 @@
 
       <!-- CTA Buttons -->
       <div class="hero-actions">
-        <a href="#connect" class="btn btn-primary" id="hero-cta-connect">
-          <span>Get in touch</span>
+        <button type="button" (click)="openModal()" class="btn btn-primary" id="hero-cta-connect">
+          <span>Get in Touch</span>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
             stroke-linecap="round" stroke-linejoin="round">
             <line x1="22" y1="2" x2="11" y2="13"></line>
             <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
           </svg>
-        </a>
+        </button>
         <a href="#about" class="btn btn-secondary" id="hero-cta-story">
           <span>Read my story</span>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -70,16 +70,171 @@
           <img src="/tcs-profile.jpg" alt="Trilok Chand Swami" class="profile-photo" id="hero-profile-photo">
           <div class="photo-overlay-text">
             <span class="photo-overlay-name">Trilok Chand Swami</span>
-            <span class="photo-overlay-sub">@TCSJaipur · Jaipur, IN</span>
+            <span class="photo-overlay-sub">&#64;TCSJaipur · Jaipur, IN</span>
           </div>
         </div>
         <div class="profile-glow-ring"></div>
-
-
-
       </div>
 
     </div>
 
   </div>
 </section>
+
+<!-- ── Get In Touch Modal ── -->
+@if (isModalOpen()) {
+<div class="modal-backdrop" (click)="closeModal()" id="connect-modal-backdrop">
+  <div class="modal-panel" (click)="$event.stopPropagation()" id="connect-modal-panel">
+
+    <!-- Modal Header -->
+    <div class="modal-header">
+      <div class="modal-header-left">
+        <span class="modal-eyebrow">Let's Connect</span>
+        <h2 class="modal-title">Get in Touch</h2>
+      </div>
+      <button class="modal-close-btn" (click)="closeModal()" id="modal-close-btn" aria-label="Close modal">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Modal Body -->
+    <div class="modal-body">
+      @if (!isModalSubmitted()) {
+
+      <!-- Step 1: Pick connection type -->
+      <div class="modal-section">
+        <p class="modal-section-label">How would you like to connect?</p>
+        <div class="connection-type-grid">
+          @for (type of connectionTypes; track type.id) {
+          <button
+            type="button"
+            class="connection-type-card"
+            [class.selected]="formData.connectionType === type.id"
+            (click)="selectType(type.id)"
+            [id]="'type-' + type.id">
+            <span class="ct-emoji">{{ type.emoji }}</span>
+            <span class="ct-label">{{ type.label }}</span>
+            <span class="ct-desc">{{ type.desc }}</span>
+          </button>
+          }
+        </div>
+      </div>
+
+      <!-- Step 2: Fill in details -->
+      <form #modalForm="ngForm" (ngSubmit)="submitModal(modalForm)" novalidate class="modal-form">
+
+        <div class="modal-fields-row">
+          <!-- Name -->
+          <div class="modal-field-group">
+            <label for="m-name" class="modal-field-label">Full Name <span class="required-star">*</span></label>
+            <input type="text" id="m-name" name="m-name"
+              [(ngModel)]="formData.name" required
+              #mName="ngModel"
+              [class.field-invalid]="mName.invalid && mName.touched"
+              placeholder="e.g. Priya Sharma"
+              class="modal-input" />
+            @if (mName.invalid && mName.touched) {
+            <span class="modal-field-error">Name is required.</span>
+            }
+          </div>
+
+          <!-- Mobile -->
+          <div class="modal-field-group">
+            <label for="m-mobile" class="modal-field-label">Mobile Number <span class="required-star">*</span></label>
+            <input type="tel" id="m-mobile" name="m-mobile"
+              [(ngModel)]="formData.mobile" required
+              pattern="[0-9+\-\s]{7,15}"
+              #mMobile="ngModel"
+              [class.field-invalid]="mMobile.invalid && mMobile.touched"
+              placeholder="+91 98765 43210"
+              class="modal-input" />
+            @if (mMobile.invalid && mMobile.touched) {
+            <span class="modal-field-error">Please enter a valid number.</span>
+            }
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="modal-field-group">
+          <label for="m-email" class="modal-field-label">Email Address <span class="required-star">*</span></label>
+          <input type="email" id="m-email" name="m-email"
+            [(ngModel)]="formData.email" required email
+            #mEmail="ngModel"
+            [class.field-invalid]="mEmail.invalid && mEmail.touched"
+            placeholder="your@email.com"
+            class="modal-input" />
+          @if (mEmail.invalid && mEmail.touched) {
+          <span class="modal-field-error">Please enter a valid email.</span>
+          }
+        </div>
+
+        <!-- Message -->
+        <div class="modal-field-group">
+          <label for="m-message" class="modal-field-label">Message / Details <span class="required-star">*</span></label>
+          <textarea id="m-message" name="m-message"
+            [(ngModel)]="formData.message" required minlength="10"
+            #mMsg="ngModel"
+            [class.field-invalid]="mMsg.invalid && mMsg.touched"
+            placeholder="Tell me what's on your mind — your idea, question, or just a hello..."
+            rows="4"
+            class="modal-input modal-textarea"></textarea>
+          @if (mMsg.invalid && mMsg.touched) {
+            @if (mMsg.errors?.['required']) {
+            <span class="modal-field-error">Message is required.</span>
+            } @else if (mMsg.errors?.['minlength']) {
+            <span class="modal-field-error">At least 10 characters please.</span>
+            }
+          }
+        </div>
+
+        <!-- No type selected warning -->
+        @if (!formData.connectionType && modalForm.submitted) {
+        <p class="modal-type-warning">⚠️ Please pick a connection type above.</p>
+        }
+
+        <!-- Actions -->
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary modal-cancel-btn" (click)="closeModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary modal-submit-btn" [disabled]="isModalSubmitting()" id="modal-submit-btn">
+            @if (isModalSubmitting()) {
+            <div class="modal-spinner"></div>
+            <span>Sending...</span>
+            } @else {
+            <span>Send Message</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+            }
+          </button>
+        </div>
+
+      </form>
+
+      } @else {
+      <!-- Success state -->
+      <div class="modal-success">
+        <div class="modal-success-icon">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+        <h3 class="modal-success-title">Message Sent! 🎉</h3>
+        <p class="modal-success-body">
+          Thanks, <strong>{{ formData.name }}</strong>! I've received your message and will get back to you at
+          <strong>{{ formData.email }}</strong> soon.
+        </p>
+        <div class="modal-success-actions">
+          <button class="btn btn-secondary" (click)="resetModal()">Send Another</button>
+          <button class="btn btn-primary" (click)="closeModal()">Close</button>
+        </div>
+      </div>
+      }
+    </div>
+
+  </div>
+</div>
+}
