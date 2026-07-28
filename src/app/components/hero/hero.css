@@ -6,7 +6,7 @@
   display: flex;
   align-items: center;
   position: relative;
-  overflow: visible;
+  overflow-x: hidden;
 }
 
 /* Ambient glows (light mode) */
@@ -609,11 +609,27 @@
   }
 
   .hero-pullquote {
-    text-align: left;
+    border-left: none;
+    padding-left: 0;
+    text-align: center;
+    margin-top: 0.5rem;
+  }
+  
+  .quote-mark {
+    position: static;
+    display: block;
+    margin: 0 auto 0.5rem;
+    font-size: 3.5rem;
+    text-align: center;
+  }
+  
+  .quote-text {
+    padding-left: 0;
   }
 
   .hero-bio {
-    text-align: left;
+    text-align: center;
+    margin: 0 auto;
   }
 
   .hero-actions {
