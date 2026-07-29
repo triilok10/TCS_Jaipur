@@ -2,207 +2,136 @@
      QR Connect Hub  ·  #tcsjaipur
      ══════════════════════════════════════════════════════════ -->
 <div class="qr-page">
+  <div class="container">
 
-  <!-- ── Hero Header ── -->
-  <header class="qr-header">
-    <div class="qr-header-inner">
-
-      <!-- Back button -->
-      <a routerLink="/connect" class="back-btn" id="qr-back-btn">
-        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"
-          stroke-linecap="round">
-          <path d="M19 12H5M12 19l-7-7 7-7" />
-        </svg>
-        Back to Connect
-      </a>
-
-      <!-- Hero text -->
-      <div class="hero-text">
-        <div class="hero-eyebrow">
-          <span class="eyebrow-dot"></span>
-          Scan &amp; Connect
-        </div>
-        <h1 class="hero-title">
-          Connect with&nbsp;<span class="hero-tag">#tcsjaipur</span>
-        </h1>
-        <p class="hero-desc">
-          Scan any QR code to instantly open the official profile.
-          Each code is verified and linked to the TCS Jaipur Tech Hub.
-        </p>
+    <!-- ── Hero Header ── -->
+    <header class="qr-header animate-slide-up">
+      <div class="hero-eyebrow">
+        <span class="eyebrow-dot"></span>
+        Scan &amp; Connect Hub
       </div>
 
-      <!-- Stats row -->
-      <div class="hero-stats">
-        <div class="stat">
-          <strong>3</strong><span>Platforms</span>
-        </div>
-        <div class="stat-sep"></div>
-        <div class="stat">
-          <strong>500+</strong><span>Connections</span>
-        </div>
-        <div class="stat-sep"></div>
-        <div class="stat">
-          <strong>100+</strong><span>Badges</span>
-        </div>
+      <h1 class="hero-title">
+        Connect with&nbsp;<span class="text-gradient">#tcsjaipur</span>
+      </h1>
+
+      <p class="hero-desc">
+        Scan any QR code to instantly open the verified official profile.
+        Each code connects you directly with the TCS Jaipur Tech Hub.
+      </p>
+
+      <!-- Back button - positioned identical to Talks page -->
+      <div class="nav-back">
+        <a routerLink="/connect" class="btn btn-secondary" id="qr-back-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m15 18-6-6 6-6"/>
+          </svg>
+          Back to Connect
+        </a>
       </div>
 
-    </div>
-  </header>
-
-  <!-- ── QR Cards ── -->
-  <main class="qr-main">
-    <div class="qr-grid">
-
-      <article *ngFor="let p of profiles" class="qr-card" [attr.id]="'qr-card-' + p.id">
-        <!-- Top accent bar -->
-        <div class="card-accent" [style.background]="p.brandColor"></div>
-
-        <!-- Platform header -->
-        <div class="card-head">
-          <div class="card-icon" [style.background]="p.accentBg" [innerHTML]="p.iconHtml">
-          </div>
-          <div class="card-meta">
-            <span class="card-platform" [style.color]="p.brandColor">
-              {{ p.platform }}
-            </span>
-            <h2 class="card-title">{{ p.title }}</h2>
-            <p class="card-sub">{{ p.subtitle }}</p>
-          </div>
-        </div>
-
-        <!-- QR Code -->
-        <div class="qr-frame" [style.--brand]="p.brandColor">
-          <img class="qr-img" [src]="p.qrSrc" [alt]="'Scan to visit ' + p.platform + ' profile of ' + p.handle"
-            loading="lazy" decoding="async" width="260" height="260" [attr.id]="'qr-img-' + p.id" />
-          <!-- Scan corners -->
-          <i class="sc sc-tl" [style.border-color]="p.brandColor"></i>
-          <i class="sc sc-tr" [style.border-color]="p.brandColor"></i>
-          <i class="sc sc-bl" [style.border-color]="p.brandColor"></i>
-          <i class="sc sc-br" [style.border-color]="p.brandColor"></i>
-        </div>
-
-        <!-- URL strip -->
-        <div class="card-url">
-          <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.8"
-            stroke-linecap="round">
-            <path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71" />
-            <path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71" />
-          </svg>
-          {{ p.url }}
-        </div>
-
-        <!-- Actions -->
-        <div class="card-actions">
-          <button type="button" class="btn-action" [class.btn-copied]="copiedId === p.id" (click)="copyUrl(p)"
-            [attr.id]="'btn-copy-' + p.id">
-            <svg *ngIf="copiedId !== p.id" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor"
-              stroke-width="2" stroke-linecap="round">
-              <rect x="9" y="9" width="13" height="13" rx="2" />
-              <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
-            </svg>
-            <svg *ngIf="copiedId === p.id" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor"
-              stroke-width="2.5" stroke-linecap="round">
-              <polyline points="20 6 9 17 4 12" />
-            </svg>
-            {{ copiedId === p.id ? 'Copied!' : 'Copy Link' }}
-          </button>
-
-          <button type="button" class="btn-action" (click)="openMetrics(p)" [attr.id]="'btn-stats-' + p.id">
-            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"
-              stroke-linecap="round">
-              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
-            </svg>
-            View Stats
-          </button>
-        </div>
-
-        <!-- Visit CTA -->
-        <button type="button" class="btn-visit" [style.background]="p.brandColor" (click)="visitProfile(p.url)"
-          [attr.id]="'btn-visit-' + p.id">
-          Open {{ p.platform }}
-          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2"
-            stroke-linecap="round">
-            <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" />
-          </svg>
+      <!-- Category Filter Tabs -->
+      <div class="filter-tabs">
+        <button class="filter-btn" [class.active]="activeFilter === 'all'" (click)="setFilter('all')">
+          <span class="filter-icon">⚡</span> All Profiles <span class="filter-count">3</span>
         </button>
-
-      </article>
-    </div>
-  </main>
-
-  <!-- ── #tcsjaipur Footer Banner ── -->
-  <footer class="hub-banner">
-    <div class="hub-banner-inner">
-      <div class="hub-left">
-        <span class="hub-hash">#</span>
-        <div>
-          <strong class="hub-name">tcsjaipur</strong>
-          <p class="hub-tagline">TCS Jaipur Tech Hub — Connecting Professionals Through Technology</p>
-        </div>
+        <button class="filter-btn" [class.active]="activeFilter === 'cloud'" (click)="setFilter('cloud')">
+          <span class="filter-icon">☁️</span> Cloud &amp; Enterprise <span class="filter-count">2</span>
+        </button>
+        <button class="filter-btn" [class.active]="activeFilter === 'code'" (click)="setFilter('code')">
+          <span class="filter-icon">💻</span> Code &amp; Repos <span class="filter-count">1</span>
+        </button>
       </div>
-      <div class="hub-dots">
-        <span></span><span></span><span class="hub-dot-active"></span><span></span><span></span>
+
+    </header>
+
+    <!-- ── QR Cards Grid ── -->
+    <main class="qr-main">
+      <div class="qr-grid">
+
+        <article *ngFor="let p of filteredProfiles" class="qr-card" [attr.id]="'qr-card-' + p.id">
+          <!-- Top accent bar -->
+          <div class="card-accent" [style.background]="p.brandColor"></div>
+
+          <!-- Platform header -->
+          <div class="card-head">
+            <div class="card-icon" [style.background]="p.accentBg" [innerHTML]="p.iconHtml"></div>
+            <div class="card-meta">
+              <span class="card-platform" [style.color]="p.brandColor">
+                {{ p.platform }}
+              </span>
+              <h2 class="card-title">{{ p.title }}</h2>
+              <p class="card-sub">{{ p.subtitle }}</p>
+            </div>
+          </div>
+
+          <!-- QR Code Frame -->
+          <div class="qr-frame" [style.--brand]="p.brandColor">
+            <div class="qr-img-wrapper">
+              <img class="qr-img" [src]="p.qrSrc" [alt]="'Scan to visit ' + p.platform + ' profile of ' + p.handle"
+                loading="lazy" decoding="async" width="260" height="260" [attr.id]="'qr-img-' + p.id" />
+            </div>
+            <!-- Scan corner brackets -->
+            <i class="sc sc-tl" [style.border-color]="p.brandColor"></i>
+            <i class="sc sc-tr" [style.border-color]="p.brandColor"></i>
+            <i class="sc sc-bl" [style.border-color]="p.brandColor"></i>
+            <i class="sc sc-br" [style.border-color]="p.brandColor"></i>
+          </div>
+
+          <!-- URL strip -->
+          <div class="card-url">
+            <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71" />
+              <path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71" />
+            </svg>
+            {{ p.url }}
+          </div>
+
+          <!-- Quick Action Buttons -->
+          <div class="card-actions-grid">
+            <button type="button" class="btn-action" [class.btn-copied]="copiedId === p.id" (click)="copyUrl(p)"
+              [attr.id]="'btn-copy-' + p.id">
+              <svg *ngIf="copiedId !== p.id" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" />
+                <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+              </svg>
+              <svg *ngIf="copiedId === p.id" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor"
+                stroke-width="2.5" stroke-linecap="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              {{ copiedId === p.id ? 'Copied' : 'Copy Link' }}
+            </button>
+
+            <button type="button" class="btn-action" (click)="downloadQr(p)" [attr.id]="'btn-download-' + p.id">
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+              </svg>
+              Save QR
+            </button>
+          </div>
+
+          <!-- Visit CTA -->
+          <button type="button" class="btn-visit" [style.background]="p.brandColor" (click)="visitProfile(p.url)"
+            [attr.id]="'btn-visit-' + p.id">
+            Open {{ p.platform }}
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2"
+              stroke-linecap="round">
+              <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" />
+            </svg>
+          </button>
+
+        </article>
+
       </div>
-    </div>
-  </footer>
-
-</div>
-
-<!-- ══ Metrics Modal ══ -->
-<div class="modal-backdrop" *ngIf="isModalOpen" (click)="closeModal()" id="qr-modal-backdrop" role="dialog"
-  aria-modal="true">
-  <div class="modal-card" (click)="$event.stopPropagation()" *ngIf="selectedProfile" id="qr-modal-card">
-
-    <!-- Close -->
-    <button class="modal-close" (click)="closeModal()" id="modal-close" aria-label="Close metrics">
-      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5"
-        stroke-linecap="round">
-        <path d="M18 6L6 18M6 6l12 12" />
-      </svg>
-    </button>
-
-    <!-- Modal Header -->
-    <div class="modal-header" [style.background]="selectedProfile.brandColor">
-      <div class="modal-header-icon" [innerHTML]="selectedProfile.iconHtml"></div>
-      <div class="modal-header-text">
-        <span class="modal-verified">✓ #tcsjaipur Verified</span>
-        <h3 class="modal-platform">{{ selectedProfile.platform }}</h3>
-        <p class="modal-handle">@{{ selectedProfile.handle }}</p>
-      </div>
-    </div>
-
-    <!-- QR preview inside modal -->
-    <div class="modal-qr-preview">
-      <img [src]="selectedProfile.qrSrc" [alt]="'QR code for ' + selectedProfile.platform" class="modal-qr-img"
-        width="120" height="120" />
-      <div class="modal-qr-label">
-        <strong>Scan to visit</strong>
-        <span>{{ selectedProfile.url }}</span>
-      </div>
-    </div>
-
-    <!-- Metrics -->
-    <div class="modal-metrics">
-      <div *ngFor="let m of selectedProfile.metrics" class="modal-metric">
-        <span class="modal-metric-icon">{{ m.icon }}</span>
-        <div>
-          <span class="modal-metric-label">{{ m.label }}</span>
-          <strong class="modal-metric-value">{{ m.value }}</strong>
-        </div>
-      </div>
-    </div>
-
-    <!-- CTA -->
-    <div class="modal-footer">
-      <button type="button" class="modal-cta" [style.background]="selectedProfile.brandColor"
-        (click)="visitProfile(selectedProfile.url)" id="modal-visit-btn">
-        Open {{ selectedProfile.platform }} Profile
-        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2"
-          stroke-linecap="round">
-          <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" />
-        </svg>
-      </button>
-    </div>
+    </main>
 
   </div>
+</div>
+
+<!-- ══ Toast Feedback Overlay ══ -->
+<div class="toast-notification" *ngIf="toastMessage" class="toast-notification animate-slide-up">
+  <span class="toast-icon">✨</span>
+  <span class="toast-text">{{ toastMessage }}</span>
 </div>
