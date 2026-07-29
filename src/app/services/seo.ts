@@ -1,8 +1,7 @@
-// src/app/services/seo.ts
 import { Injectable, inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
-import { Meta } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 import { filter, map } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
@@ -10,6 +9,7 @@ export class Seo {
     private router = inject(Router);
     private activatedRoute = inject(ActivatedRoute);
     private meta = inject(Meta);
+    private title = inject(Title);
     private document = inject(DOCUMENT);
     private baseUrl = 'https://tcsjaipur.com';
 
@@ -24,12 +24,23 @@ export class Seo {
                 })
             )
             .subscribe((route) => {
-                const description = route?.snapshot.data['description'];
+                const data = route?.snapshot.data;
+                const title = route?.snapshot.title;
+                const description = data?.['description'];
+                const image = data?.['image'] ?? `${this.baseUrl}/tcs-profile.jpg`;
+                const url = `${this.baseUrl}${this.router.url}`;
+
+                if (title) {
+                    this.meta.updateTag({ property: 'og:title', content: title });
+                    this.meta.updateTag({ name: 'twitter:title', content: title });
+                }
                 if (description) {
                     this.meta.updateTag({ name: 'description', content: description });
                     this.meta.updateTag({ property: 'og:description', content: description });
+                    this.meta.updateTag({ name: 'twitter:description', content: description });
                 }
-                const url = `${this.baseUrl}${this.router.url}`;
+                this.meta.updateTag({ property: 'og:image', content: image });
+                this.meta.updateTag({ name: 'twitter:image', content: image });
                 this.meta.updateTag({ property: 'og:url', content: url });
                 this.updateCanonical(url);
             });
