@@ -8,6 +8,8 @@ interface ContactForm {
   mobile: string;
   connectionType: string;
   message: string;
+  eventDate: string;
+  eventTime: string;
 }
 
 @Component({
@@ -31,7 +33,9 @@ export class Hero {
     email: '',
     mobile: '',
     connectionType: '',
-    message: ''
+    message: '',
+    eventDate: '',
+    eventTime: ''
   };
 
   protected readonly connectionTypes = [
@@ -43,6 +47,46 @@ export class Hero {
     { id: 'bd26',   emoji: '🇮🇳', label: 'Bharat Dreamin\'', desc: 'BD \'26 ambassador inquiry' },
     { id: 'other',  emoji: '💬', label: 'Something Else',   desc: 'Just say hello!' }
   ];
+
+  protected readonly scheduleRequiredTypes = ['coffee', 'vc', 'collab', 'talk', 'bd26'];
+
+  protected needsSchedule(): boolean {
+    return this.scheduleRequiredTypes.includes(this.formData.connectionType);
+  }
+
+  protected getScheduleLabel(): string {
+    switch (this.formData.connectionType) {
+      case 'talk':
+        return 'Talk / Event date';
+      case 'bd26':
+        return 'Bharat Dreamin 2026 date';
+      case 'coffee':
+        return 'Preferred meetup date';
+      case 'vc':
+        return 'Preferred call date';
+      case 'collab':
+        return 'Project kickoff date';
+      default:
+        return 'Preferred date';
+    }
+  }
+
+  protected getScheduleTimeLabel(): string {
+    switch (this.formData.connectionType) {
+      case 'talk':
+        return 'Talk / Event time';
+      case 'bd26':
+        return 'Bharat Dreamin 2026 time';
+      case 'coffee':
+        return 'Preferred meetup time';
+      case 'vc':
+        return 'Preferred call time';
+      case 'collab':
+        return 'Preferred discussion time';
+      default:
+        return 'Preferred time';
+    }
+  }
 
   protected sendRequest() {
     if (this.isRequestLoading()) return;
@@ -69,7 +113,7 @@ export class Hero {
   }
 
   protected submitModal(form: NgForm) {
-    if (form.invalid || !this.formData.connectionType) {
+    if (form.invalid || !this.formData.connectionType || (this.needsSchedule() && (!this.formData.eventDate || !this.formData.eventTime))) {
       Object.keys(form.controls).forEach(k => form.controls[k].markAsTouched());
       return;
     }
@@ -82,7 +126,7 @@ export class Hero {
 
   protected resetModal() {
     this.isModalSubmitted.set(false);
-    this.formData = { name: '', email: '', mobile: '', connectionType: '', message: '' };
+    this.formData = { name: '', email: '', mobile: '', connectionType: '', message: '', eventDate: '', eventTime: '' };
   }
 
   @HostListener('document:keydown.escape')

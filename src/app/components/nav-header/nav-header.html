@@ -4,15 +4,30 @@
       <span class="brand-text">TCS</span><span class="brand-jaipur">Jaipur</span>
       <span class="brand-dot"></span>
     </a>
-    
-    <nav class="nav-links">
-      <a routerLink="/" fragment="about" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">About</a>
-      <a routerLink="/connect" class="nav-link" routerLinkActive="active">Connect</a>
+
+    <button type="button" class="nav-toggle-btn" aria-label="Toggle navigation" aria-expanded="{{ menuOpen() }}"
+      (click)="toggleMenu()">
+      <svg *ngIf="!menuOpen()" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 7h16M4 12h16M4 17h16"></path>
+      </svg>
+      <svg *ngIf="menuOpen()" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 6l12 12M18 6L6 18"></path>
+      </svg>
+    </button>
+
+    <nav class="nav-links" [class.open]="menuOpen()">
+      <a routerLink="/" fragment="about" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="closeMenu()">About</a>
+      <a routerLink="/connect" class="nav-link" routerLinkActive="active" (click)="closeMenu()">Connect</a>
     </nav>
-    
+
     <div class="status-badge">
       <span class="status-dot"></span>
       <span class="status-text">Open to connect</span>
     </div>
   </div>
+  @if (menuOpen()) {
+    <div class="nav-overlay" (click)="closeMenu()"></div>
+  }
 </header>

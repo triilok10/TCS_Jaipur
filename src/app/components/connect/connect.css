@@ -50,13 +50,19 @@
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
   gap: 4.5rem;
-  align-items: flex-start;
+  align-items: stretch;
 }
 
 /* Left Column: Sub Navigation */
 .sub-nav-column {
   display: flex;
   flex-direction: column;
+}
+
+.interactive-column {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
 }
 
 .column-heading {
@@ -140,11 +146,16 @@
 }
 
 .form-container-card {
-  padding: 2.25rem 2rem;
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border-color);
-  background-color: var(--bg-secondary);
-  box-shadow: var(--shadow-sm), var(--shadow-inner);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex: 1;
+  min-height: 100%;
+  padding: 2.25rem;
+  border-radius: var(--radius-xl);
+  border: 1px solid rgba(79, 70, 229, 0.12);
+  background: linear-gradient(180deg, rgba(255,255,255,0.96) 0%, rgba(246, 248, 255, 0.98) 100%);
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
 }
 
 .form-heading {
@@ -152,7 +163,7 @@
   font-size: 1.35rem;
   font-weight: 700;
   color: var(--text-primary);
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.35rem;
 }
 
 .form-subtext {
@@ -165,6 +176,12 @@
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
 }
 
 .form-group {
@@ -255,21 +272,29 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 1.5rem 0.5rem;
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 2rem 1.75rem;
+  border-radius: var(--radius-xl);
+  background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(241, 245, 255, 0.96) 100%);
+  border: 1px solid rgba(79, 70, 229, 0.12);
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+  justify-content: center;
 }
 
 .success-icon-wrapper {
-  width: 56px;
-  height: 56px;
+  width: 68px;
+  height: 68px;
   border-radius: var(--radius-full);
-  background-color: rgba(16, 185, 129, 0.05);
-  border: 1px solid rgba(16, 185, 129, 0.15);
+  background-color: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.2);
   color: var(--color-green);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1.25rem;
-  box-shadow: 0 4px 10px rgba(16, 185, 129, 0.1);
+  margin-bottom: 1.5rem;
+  box-shadow: 0 14px 34px rgba(16, 185, 129, 0.08);
 }
 
 .success-title {
@@ -277,19 +302,22 @@
   font-size: 1.5rem;
   font-weight: 800;
   color: var(--text-primary);
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
 }
 
 .success-text {
-  font-size: 0.95rem;
-  line-height: 1.6;
+  font-size: 0.98rem;
+  line-height: 1.8;
   color: var(--text-secondary);
-  margin-bottom: 1.75rem;
-  max-width: 400px;
+  margin: 0 auto 1.2rem;
+  max-width: 540px;
 }
 
 .btn-reset-success {
-  padding: 0.65rem 1.25rem;
+  padding: 0.85rem 1.5rem;
+  font-weight: 700;
+  margin-top: auto;
+  min-width: 220px;
 }
 
 /* Bash Terminal details */
@@ -460,6 +488,10 @@
 
   .connect-page-header {
     margin-bottom: 3rem;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
   }
 }
 

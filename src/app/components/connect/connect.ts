@@ -34,11 +34,49 @@ export class Connect implements AfterViewChecked {
     name: '',
     email: '',
     subject: 'general',
-    message: ''
+    message: '',
+    eventDate: '',
+    eventTime: ''
   };
-  
+
+  protected readonly scheduleRequiredTypes = ['coffee', 'call', 'talk', 'opportunity'];
+
   protected isFormSubmitting = signal(false);
   protected isFormSubmitted = signal(false);
+
+  protected needsEventSchedule(): boolean {
+    return this.scheduleRequiredTypes.includes(this.formData.subject);
+  }
+
+  protected getScheduleLabel(): string {
+    switch (this.formData.subject) {
+      case 'talk':
+        return 'Talk / Event date';
+      case 'opportunity':
+        return 'Project kickoff date';
+      case 'coffee':
+        return 'Preferred meetup date';
+      case 'call':
+        return 'Preferred call date';
+      default:
+        return 'Preferred date';
+    }
+  }
+
+  protected getScheduleTimeLabel(): string {
+    switch (this.formData.subject) {
+      case 'talk':
+        return 'Talk / Event time';
+      case 'opportunity':
+        return 'Preferred time for the project discussion';
+      case 'coffee':
+        return 'Preferred time for coffee';
+      case 'call':
+        return 'Preferred call time';
+      default:
+        return 'Preferred time';
+    }
+  }
 
   // Talks & Milestones Timeline Dataset
   protected readonly timelineEvents: TalkEvent[] = [
@@ -88,8 +126,7 @@ export class Connect implements AfterViewChecked {
   }
 
   protected submitContactForm(form: NgForm) {
-    if (form.invalid) {
-      // Mark all fields as touched to trigger validation visuals
+    if (form.invalid || (this.needsEventSchedule() && (!this.formData.eventDate || !this.formData.eventTime))) {
       Object.keys(form.controls).forEach(key => {
         form.controls[key].markAsTouched();
       });
@@ -121,7 +158,9 @@ export class Connect implements AfterViewChecked {
       name: '',
       email: '',
       subject: 'general',
-      message: ''
+      message: '',
+      eventDate: '',
+      eventTime: ''
     };
     this.isFormSubmitted.set(false);
   }

@@ -12,28 +12,32 @@ import { RouterModule } from '@angular/router';
 export class Talks {
   timelineEvents = [
     {
-      year: '2024',
-      title: 'Azure Functions & Microservices Architecture',
-      event: 'Global Azure Bootcamp',
-      description: 'Presented a deep dive into migrating monolithic .NET applications to serverless Azure Functions with CosmosDB integrations, highlighting real-world scale and cost efficiency.'
+      year: '2026',
+      title: 'Bharat Dreamin 2026 Ambassador Talk',
+      event: 'Bharat Dreamin 2026',
+      description: 'Presented the ambassador keynote on community-led engineering, volunteer impact, and developer experience at Bharat Dreamin 2026.',
+      image: '/BD_1.jpeg'
     },
     {
-      year: '2023',
-      title: 'State Management with NgRx in Enterprise Angular',
-      event: 'Angular India Meetup',
-      description: 'Walked through implementing NgRx for complex state flows in a healthcare application, focusing on reducing boilerplate and ensuring predictable state transitions.'
+      year: '2026',
+      title: 'Volunteer Activation Session',
+      event: 'Bharat Dreamin 2026',
+      description: 'Led a volunteer workshop focused on event coordination, community storytelling, and scaling local Jaipur tech engagement.',
+      image: '/BD_2.jpeg'
     },
     {
-      year: '2022',
-      title: 'Brand Ambassador Selection',
-      event: 'Bharat Dreamin\' 2026',
-      description: 'Selected as the Brand Ambassador to help lead community tech initiatives, driving developer engagement and sharing insights across multiple open-source tracks.'
+      year: '2026',
+      title: 'Community Gallery Showcase',
+      event: 'Bharat Dreamin 2026',
+      description: 'Showcased volunteer moments, speaker support, and the community spirit that powered the Bharat Dreamin 2026 experience.',
+      image: '/BD_3.jpeg'
     },
     {
-      year: '2021',
-      title: 'Mentoring the Next Gen',
-      event: 'Tech Trailblazers Jaipur',
-      description: 'Initiated a mentorship program helping junior developers map out their Full Stack engineering journey using the .NET and Angular ecosystems.'
+      year: '2026',
+      title: 'Brand Story & Networking Roundtable',
+      event: 'Bharat Dreamin 2026',
+      description: 'Hosted a roundtable on building developer communities, connecting GDG Jaipur volunteers, and driving the event narrative forward.',
+      image: '/BD_4.jpeg'
     }
   ];
 }

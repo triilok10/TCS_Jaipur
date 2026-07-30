@@ -21,6 +21,10 @@ export const routes: Routes = [
         'Full Stack Engineer Jaipur',
         '.NET Core Developer Jaipur',
         'Angular Developer Jaipur',
+        'Jaipur tech community',
+        'GDG Jaipur',
+        'Volunteer tech leader',
+        'Bharat Dreamin 2026',
       ],
       type: 'profile',
       structuredData: [personSchema, organizationSchema],
@@ -32,7 +36,7 @@ export const routes: Routes = [
     title: 'Connect | TCS Jaipur', // 21 chars
     data: {
       description: 'Connect with Trilok Chand Swami (TCS Jaipur) on LinkedIn, GitHub & more.', // 74 chars
-      keywords: ['Trilok Chand Swami LinkedIn', 'Trilok Chand Swami GitHub', 'Connect with TCS Jaipur'],
+      keywords: ['Trilok Chand Swami LinkedIn', 'Trilok Chand Swami GitHub', 'Connect with TCS Jaipur', 'GDG Jaipur Team', 'TCSInJaipur', 'Jaipur volunteer'],
       type: 'profile',
     } as SeoRouteData,
   },
@@ -53,7 +57,7 @@ export const routes: Routes = [
       // NOTE: update this to reflect the real events he's actually spoken at.
       description:
         "Speaking engagements by Trilok Chand Swami, Brand Ambassador at Bharat Dreamin' 2026, including talks at GDG Jaipur and React Rajasthan meetups.", // 149 chars
-      keywords: ['GDG Jaipur talks', 'React Rajasthan talks', "Bharat Dreamin' speaker", 'Trilok Chand Swami speaker'],
+      keywords: ['GDG Jaipur talks', 'React Rajasthan talks', "Bharat Dreamin' speaker", 'Trilok Chand Swami speaker', 'Jaipur event stories', 'community volunteer talks'],
       type: 'article',
       structuredData: bharatDreaminEventSchema,
     } as SeoRouteData,
@@ -61,12 +65,20 @@ export const routes: Routes = [
   {
     path: 'qr',
     component: Qr,
-    title: 'QR Code | TCS Jaipur', // 21 chars
+    title: 'QR Connect Hub | TCS Jaipur',
     data: {
-      description: 'Scan to quickly connect with Trilok Chand Swami (TCS Jaipur).', // 63 chars
-      // Thin, utility-only content — keep it out of the search index rather
-      // than let it compete with (or dilute) the real pages above.
-      index: false,
+      description:
+        'QR Connect Hub for TCS Jaipur: scan to open Trilok Chand Swami’s official LinkedIn, GitHub, and Salesforce Trailhead profiles in one place.',
+      keywords: [
+        'QR connect Jaipur',
+        'TCS Jaipur QR',
+        'Trilok Chand Swami QR code',
+        'LinkedIn QR code',
+        'GitHub QR code',
+        'Salesforce Trailhead QR',
+        'Jaipur tech profile QR',
+      ],
+      type: 'website',
     } as SeoRouteData,
   },
   { path: '**', redirectTo: '' },
