@@ -1,34 +1,10 @@
 <section class="talks-page-wrapper">
   <div class="container">
     <div class="talks-page-header animate-slide-up">
-      <span class="header-badge">Bharat Dreamin 2026</span>
-      <h1 class="text-gradient">Event Gallery & Timeline</h1>
-      <p>A Bharat Dreamin 2026 showcase of ambassador talks, volunteer sessions, and community moments.</p>
+      <span class="header-badge">Community & Learning Events</span>
+      <h1 class="text-gradient">Learning Stories</h1>
+      <p>A conceptual showcase of volunteer workshops, speaker sessions, mentorship moments, and learner-focused community interactions.</p>
       
-      <div class="talks-gallery">
-        <div class="gallery-title">
-          <h2>Event Gallery</h2>
-          <p>Photos from Bharat Dreamin 2026, volunteer highlights, and ambassador moments.</p>
-        </div>
-        <div class="gallery-grid">
-          <div *ngFor="let item of timelineEvents" class="gallery-card">
-            <img src="{{ item.image }}" alt="{{ item.event }}" loading="lazy" />
-            <div class="gallery-card-meta">
-              <span class="gallery-card-year">{{ item.year }}</span>
-              <strong>{{ item.event }}</strong>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="nav-back">
-        <a routerLink="/connect" class="btn btn-secondary">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="m15 18-6-6 6-6"/>
-          </svg>
-          Back to Connect
-        </a>
-      </div>
     </div>
 
     <div class="timeline-container animate-slide-up" style="animation-delay: 0.1s;">
@@ -45,6 +21,67 @@
             <p class="timeline-desc">{{ item.description }}</p>
           </div>
         </div>
+      </div>
+    </div>
+
+    <div class="talks-gallery animate-slide-up" style="animation-delay: 0.15s;">
+      <div class="gallery-title">
+        <h2>Community Gallery</h2>
+      </div>
+      <div class="gallery-grid">
+        <div *ngFor="let item of timelineEvents; let i = index" class="gallery-card" (click)="openGalleryModal(item)">
+          <div class="gallery-card-image-panel">
+            <img [src]="item.image" [alt]="item.event" loading="lazy" />
+            <span class="gallery-card-tag">{{ item.eventType }}</span>
+            <span class="gallery-card-overlay">VIEW</span>
+          </div>
+          <div class="gallery-card-body">
+            <div class="gallery-card-top">
+              <span class="gallery-card-year">{{ item.year }}</span>
+              <span class="gallery-card-type">{{ item.eventType }}</span>
+            </div>
+            <h3 class="gallery-card-title">{{ item.title }}</h3>
+            <p class="gallery-card-subtitle">{{ item.event }}</p>
+            <p class="gallery-card-description">
+              {{ item.description | slice:0:96 }}{{ item.description.length > 96 ? '...' : '' }}
+            </p>
+            <div class="gallery-card-footer">
+              <button type="button" class="read-more-btn" (click)="openGalleryModal(item); $event.stopPropagation()">
+                Read more
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-back">
+      <a routerLink="/connect" class="btn btn-secondary">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m15 18-6-6 6-6"/>
+        </svg>
+        Back to Connect
+      </a>
+    </div>
+  </div>
+
+  <div class="gallery-modal-backdrop" *ngIf="selectedGalleryItem" (click)="closeGalleryModal()">
+    <div class="gallery-modal-panel" (click)="$event.stopPropagation()">
+      <button type="button" class="gallery-modal-close" (click)="closeGalleryModal()" aria-label="Close details">
+        ×
+      </button>
+      <img class="gallery-modal-image" [src]="selectedGalleryItem.image" [alt]="selectedGalleryItem.event" />
+      <div class="gallery-modal-content">
+        <span class="gallery-modal-tag">{{ selectedGalleryItem.eventType }}</span>
+        <h3 class="gallery-modal-title">{{ selectedGalleryItem.title }}</h3>
+        <p class="gallery-modal-event">{{ selectedGalleryItem.event }}</p>
+        <p class="gallery-modal-description">{{ selectedGalleryItem.description }}</p>
+        <div class="gallery-modal-meta">
+          <span><strong>Year:</strong> {{ selectedGalleryItem.year }}</span>
+          <span><strong>Location:</strong> {{ selectedGalleryItem.location }}</span>
+          <span><strong>With:</strong> {{ selectedGalleryItem.people }}</span>
+        </div>
+        <p class="gallery-modal-note"><strong>Why it matters:</strong> {{ selectedGalleryItem.note }}</p>
       </div>
     </div>
   </div>
