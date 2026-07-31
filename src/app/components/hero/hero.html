@@ -159,14 +159,18 @@
               <svg class="input-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
               <input type="tel" id="m-mobile" name="m-mobile"
                 [(ngModel)]="formData.mobile" required
-                pattern="[0-9+\-\s]{7,15}"
+                pattern="[0-9]{10}"
+                maxlength="10"
+                inputmode="numeric"
+                autocomplete="tel"
+                (input)="formData.mobile = sanitizeMobileInput($any($event.target).value)"
                 #mMobile="ngModel"
                 [class.field-invalid]="mMobile.invalid && mMobile.touched"
-                placeholder="+91 98765 43210"
+                placeholder="9876543210"
                 class="modal-input" />
             </div>
             @if (mMobile.invalid && mMobile.touched) {
-            <span class="modal-field-error">Please enter a valid number.</span>
+            <span class="modal-field-error">Please enter a valid 10-digit mobile number.</span>
             }
           </div>
         </div>

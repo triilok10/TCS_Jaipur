@@ -23,16 +23,35 @@ export class EmailService {
   private readonly publicKey = environment.emailjs.publicKey;
 
   constructor() {
-    emailjs.init(this.publicKey);
+    if (typeof window !== 'undefined') {
+      emailjs.init(this.publicKey);
+    }
   }
 
   async sendEmail(payload: EmailPayload): Promise<void> {
+    const messageBody = [
+      `Name: ${payload.from_name || '—'}`,
+      `Email: ${payload.from_email || '—'}`,
+      `Mobile: ${payload.mobile || '—'}`,
+      `Connection type: ${payload.connection_type || '—'}`,
+      `Preferred date: ${payload.event_date || '—'}`,
+      `Preferred time: ${payload.event_time || '—'}`,
+      '',
+      'Message:',
+      payload.message || '—'
+    ].join('\n');
+
     const templateParams: Record<string, string> = {
       from_name:       payload.from_name,
       from_email:      payload.from_email,
+      reply_to:        payload.from_email,
       to_email:        payload.to_email,
+      name:            payload.from_name,
+      email:           payload.from_email,
       message:         payload.message,
+      message_body:    messageBody,
       mobile:          payload.mobile        ?? '—',
+      sender_phone:    payload.mobile        ?? '—',
       connection_type: payload.connection_type ?? '—',
       subject:         payload.subject        ?? 'General',
       event_date:      payload.event_date      ?? '—',

@@ -51,6 +51,7 @@ export class Hero {
   ];
 
   protected readonly scheduleRequiredTypes = ['coffee', 'vc', 'collab', 'talk', 'bd26'];
+  protected readonly mobilePattern = /^\d{10}$/;
 
   constructor(private emailService: EmailService) {}
 
@@ -80,6 +81,14 @@ export class Hero {
     }
   }
 
+  protected sanitizeMobileInput(value: string): string {
+    return value.replace(/\D/g, '').slice(0, 10);
+  }
+
+  protected isMobileValid(): boolean {
+    return this.mobilePattern.test(this.formData.mobile);
+  }
+
   protected sendRequest() {
     if (this.isRequestLoading()) return;
     this.isRequestLoading.set(true);
@@ -105,7 +114,9 @@ export class Hero {
   }
 
   protected async submitModal(form: NgForm) {
-    if (form.invalid || !this.formData.connectionType ||
+    this.formData.mobile = this.sanitizeMobileInput(this.formData.mobile);
+
+    if (form.invalid || !this.formData.connectionType || !this.isMobileValid() ||
         (this.needsSchedule() && (!this.formData.eventDate || !this.formData.eventTime))) {
       Object.keys(form.controls).forEach(k => form.controls[k].markAsTouched());
       return;
