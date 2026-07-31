@@ -4,65 +4,37 @@
       <span class="header-badge">Community & Learning Events</span>
       <h1 class="text-gradient">Learning Stories</h1>
       <p>A conceptual showcase of volunteer workshops, speaker sessions, mentorship moments, and learner-focused community interactions.</p>
-      
+
+      <div class="nav-back">
+        <a routerLink="/connect" class="btn btn-secondary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m15 18-6-6 6-6"/>
+          </svg>
+          Back to Connect
+        </a>
+      </div>
     </div>
 
-    <div class="timeline-container animate-slide-up" style="animation-delay: 0.1s;">
-      <div class="timeline">
-        <div class="timeline-item" *ngFor="let item of timelineEvents; let i = index">
-          <div class="timeline-marker">
-            <div class="marker-dot"></div>
-            <div class="marker-line" *ngIf="i !== timelineEvents.length - 1"></div>
-          </div>
-          <div class="timeline-content glass-panel">
-            <span class="timeline-year">{{ item.year }}</span>
-            <h3 class="timeline-title">{{ item.title }}</h3>
-            <h4 class="timeline-event">{{ item.event }}</h4>
-            <p class="timeline-desc">{{ item.description }}</p>
-          </div>
+    <div class="talks-filters animate-slide-up" style="animation-delay: 0.1s;">
+      <button 
+        *ngFor="let cat of categories"
+        class="filter-btn"
+        [class.active]="activeFilter === cat"
+        (click)="setFilter(cat)">
+        {{ cat }}
+      </button>
+    </div>
+
+    <div class="impact-grid animate-slide-up" style="animation-delay: 0.2s;">
+      <div *ngFor="let item of filteredEvents" class="impact-card" (click)="openGalleryModal(item)">
+        <div class="impact-pill">
+          {{ item.eventType | uppercase }} IMPACT
         </div>
+        <h2 class="impact-title">{{ item.shortCode }}</h2>
+        <p class="impact-subtitle">{{ item.event }}</p>
       </div>
     </div>
 
-    <div class="talks-gallery animate-slide-up" style="animation-delay: 0.15s;">
-      <div class="gallery-title">
-        <h2>Community Gallery</h2>
-      </div>
-      <div class="gallery-grid">
-        <div *ngFor="let item of timelineEvents; let i = index" class="gallery-card" (click)="openGalleryModal(item)">
-          <div class="gallery-card-image-panel">
-            <img [src]="item.image" [alt]="item.event" loading="lazy" />
-            <span class="gallery-card-tag">{{ item.eventType }}</span>
-            <span class="gallery-card-overlay">VIEW</span>
-          </div>
-          <div class="gallery-card-body">
-            <div class="gallery-card-top">
-              <span class="gallery-card-year">{{ item.year }}</span>
-              <span class="gallery-card-type">{{ item.eventType }}</span>
-            </div>
-            <h3 class="gallery-card-title">{{ item.title }}</h3>
-            <p class="gallery-card-subtitle">{{ item.event }}</p>
-            <p class="gallery-card-description">
-              {{ item.description | slice:0:96 }}{{ item.description.length > 96 ? '...' : '' }}
-            </p>
-            <div class="gallery-card-footer">
-              <button type="button" class="read-more-btn" (click)="openGalleryModal(item); $event.stopPropagation()">
-                Read more
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="nav-back">
-      <a routerLink="/connect" class="btn btn-secondary">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="m15 18-6-6 6-6"/>
-        </svg>
-        Back to Connect
-      </a>
-    </div>
   </div>
 
   <div class="gallery-modal-backdrop" *ngIf="selectedGalleryItem" (click)="closeGalleryModal()">
