@@ -29,7 +29,31 @@ export class Talks {
   timelineEvents: TalkPhoto[] = [
     {
       year: '2026',
-      title: 'Bharat Dreamin Ambassador Talk',
+      title: 'kavindra Patel',
+      event: 'Bharat Dreamin 2026',
+      eventType: 'Bharat Dreamin',
+      description: 'The first major meetup for the Dreamin event.',
+      image: '/BD_5.jpeg',
+      location: 'Main Auditorium',
+      people: 'with Trailblazers',
+      note: 'Kicking off the journey.',
+      shortCode: 'BD \'24'
+    },
+    {
+      year: '2024',
+      title: 'Guilda H.',
+      event: 'Bharat Dreamin 2026',
+      eventType: 'Bharat Dreamin',
+      description: 'Wrap up and celebrations.',
+      image: '/BD_6.jpeg',
+      location: 'Main Stage',
+      people: 'with all volunteers',
+      note: 'A successful event wrap up.',
+      shortCode: 'BD \'24'
+    },
+    {
+      year: '2026',
+      title: 'Gaurav kheterpal',
       event: 'Bharat Dreamin 2026',
       eventType: 'Bharat Dreamin',
       description: 'Presented the ambassador keynote on community-led engineering, volunteer impact, and developer experience.',
@@ -41,7 +65,7 @@ export class Talks {
     },
     {
       year: '2026',
-      title: 'Volunteer Activation Workshop',
+      title: 'Selfie Booth',
       event: 'Bharat Dreamin 2026',
       eventType: 'Bharat Dreamin',
       description: 'Facilitated a session for volunteers and learners on event operations.',
@@ -52,9 +76,9 @@ export class Talks {
       shortCode: 'BD \'26'
     },
     {
-      year: '2025',
-      title: 'Community Showcase Gallery',
-      event: 'Bharat Dreamin 2025',
+      year: '2026',
+      title: 'with Attendees',
+      event: 'Bharat Dreamin 2026',
       eventType: 'Bharat Dreamin',
       description: 'Documented volunteer highlights, speaker support, and learner engagement.',
       image: '/BD_3.jpeg',
@@ -64,8 +88,8 @@ export class Talks {
       shortCode: 'BD \'25'
     },
     {
-      year: '2025',
-      title: 'BD Planning Phase',
+      year: '2026',
+      title: 'Bharat Dreamin 2026 11th July',
       event: 'Bharat Dreamin 2025',
       eventType: 'Bharat Dreamin',
       description: 'Early planning and coordination for the mega event.',
@@ -76,45 +100,9 @@ export class Talks {
       shortCode: 'BD \'25'
     },
     {
-      year: '2024',
-      title: 'Bharat Dreamin Kickoff',
-      event: 'Bharat Dreamin 2024',
-      eventType: 'Bharat Dreamin',
-      description: 'The first major meetup for the Dreamin event.',
-      image: '/BD_5.jpeg',
-      location: 'Main Auditorium',
-      people: 'with Trailblazers',
-      note: 'Kicking off the journey.',
-      shortCode: 'BD \'24'
-    },
-    {
-      year: '2024',
-      title: 'Closing Ceremony',
-      event: 'Bharat Dreamin 2024',
-      eventType: 'Bharat Dreamin',
-      description: 'Wrap up and celebrations.',
-      image: '/BD_6.jpeg',
-      location: 'Main Stage',
-      people: 'with all volunteers',
-      note: 'A successful event wrap up.',
-      shortCode: 'BD \'24'
-    },
-    {
-      year: '2024',
-      title: 'Learning Circle & Panel Preview',
-      event: 'Salesforce Trailblazer Meetup',
-      eventType: 'Trailblazer Community',
-      description: 'Joined a mentor-led panel for learners.',
-      image: '/BD_1.jpeg',
-      location: 'Trailblazer Meetup Room',
-      people: 'with students',
-      note: 'Mentoring the next wave of learners.',
-      shortCode: 'SF \'24'
-    },
-    {
-      year: '2024',
-      title: 'Speaker Roundtable & Community Learnings',
-      event: 'GDG Jaipur Tech Connect',
+      year: '2026',
+      title: 'Diamond Sponsorship Team (Niyaz Ahmed)',
+      event: 'Bharat Dreamin 2026',
       eventType: 'GDG Jaipur',
       description: 'Participated in a speaker roundtable.',
       image: '/BD_2.jpeg',
