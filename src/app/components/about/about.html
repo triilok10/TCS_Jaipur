@@ -16,8 +16,14 @@
         <div class="quote-photo-card">
           <!-- Dual image crossfade -->
           <div class="qpc-img-stack">
-            <img src="/bharat-dreamin-1.jpg" alt="Trilok at Bharat Dreamin'" class="qpc-img qpc-img-base" loading="lazy" decoding="async" />
-            <img src="/bharat-dreamin-2.jpg" alt="Trilok presenting at Bharat Dreamin'" class="qpc-img qpc-img-hover" loading="lazy" decoding="async" />
+            <picture>
+              <source srcset="/bharat-dreamin-1.webp" type="image/webp">
+              <img src="/bharat-dreamin-1.jpg" alt="Trilok at Bharat Dreamin'" class="qpc-img qpc-img-base" loading="lazy" decoding="async" />
+            </picture>
+            <picture>
+              <source srcset="/bharat-dreamin-2.webp" type="image/webp">
+              <img src="/bharat-dreamin-2.jpg" alt="Trilok presenting at Bharat Dreamin'" class="qpc-img qpc-img-hover" loading="lazy" decoding="async" />
+            </picture>
           </div>
 
           <!-- Dark gradient overlay -->

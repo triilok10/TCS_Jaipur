@@ -40,6 +40,11 @@ export class Connect implements AfterViewChecked {
     eventTime: ''
   };
 
+  protected notifyEmail = '';
+  protected isNotifySubmitting = signal(false);
+  protected notifySuccess = signal(false);
+  protected notifyError = signal<string | null>(null);
+
   protected readonly scheduleRequiredTypes = ['coffee', 'call', 'talk', 'opportunity'];
 
   protected isFormSubmitting = signal(false);
@@ -153,7 +158,6 @@ export class Connect implements AfterViewChecked {
 
       this.isFormSubmitted.set(true);
 
-      // Print notification in the terminal too!
       this.terminalLines.update(lines => [
         ...lines,
         { text: `System: Incoming message from ${this.formData.name} processed successfully!`, type: 'success' }
@@ -164,6 +168,42 @@ export class Connect implements AfterViewChecked {
     } finally {
       this.isFormSubmitting.set(false);
     }
+  }
+
+  protected async submitNotifyForm(form: NgForm) {
+    if (form.invalid) {
+      Object.keys(form.controls).forEach(key => {
+        form.controls[key].markAsTouched();
+      });
+      return;
+    }
+
+    this.isNotifySubmitting.set(true);
+    this.notifyError.set(null);
+
+    try {
+      await this.emailService.sendEmail({
+        from_name:    'Meetup Subscriber',
+        from_email:   this.notifyEmail,
+        subject:      'Meetup notification subscription',
+        message:      'Please notify me when a meetup or speaking event is scheduled.',
+        to_email:     'ittiku3@gmail.com'
+      });
+
+      this.notifySuccess.set(true);
+      this.notifyEmail = '';
+    } catch (err) {
+      console.error('EmailJS error (notify form):', err);
+      this.notifyError.set('Unable to subscribe right now. Please try again later.');
+    } finally {
+      this.isNotifySubmitting.set(false);
+    }
+  }
+
+  protected resetNotifyForm() {
+    this.notifyEmail = '';
+    this.notifySuccess.set(false);
+    this.notifyError.set(null);
   }
 
   protected resetContactForm() {

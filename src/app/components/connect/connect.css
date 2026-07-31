@@ -111,21 +111,19 @@
 }
 
 .emoji-icon {
-  font-size: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-size: 1.25rem;
+  line-height: 1;
 }
 
 .card-content {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-}
-
-.card-content h4 {
-  font-size: 1.25rem;
-  color: var(--text-primary);
-}
-
-.card-content p {
+  gap: 0.55rem;
   font-size: 0.95rem;
   color: var(--text-secondary);
   line-height: 1.5;
@@ -609,13 +607,13 @@
 
 .notify-banner-form-card {
   background: var(--bg-primary);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
-  padding: 1.75rem;
+  border: 1px solid rgba(79, 70, 229, 0.08);
+  border-radius: calc(var(--radius-lg) * 1.1);
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 24px 50px rgba(15, 23, 42, 0.08);
 }
 
 .notify-banner-form-label {
@@ -629,7 +627,7 @@
 .notify-form {
   display: flex;
   flex-direction: column;
-  gap: 0.65rem;
+  gap: 0.85rem;
 }
 
 .notify-input-wrapper {
@@ -640,7 +638,7 @@
 
 .notify-input-icon {
   position: absolute;
-  left: 0.85rem;
+  left: 1rem;
   color: var(--text-light);
   pointer-events: none;
   flex-shrink: 0;
@@ -651,16 +649,14 @@
   background: var(--bg-secondary);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
-  padding: 0.75rem 0.85rem 0.75rem 2.5rem;
+  padding: 0.9rem 0.95rem 0.9rem 2.75rem;
   font-family: var(--font-body);
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: var(--text-primary);
   outline: none;
   transition: all var(--transition-fast);
-}
-
-.notify-email-input::placeholder {
-  color: var(--text-light);
+  min-height: 52px;
+  box-shadow: var(--shadow-sm);
 }
 
 .notify-email-input:focus {
@@ -671,15 +667,63 @@
 
 .notify-btn {
   width: 100%;
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  padding: 0.8rem 1rem;
+  gap: 0.65rem;
+  padding: 0.95rem 1rem;
+  min-height: 52px;
 }
 
 .notify-disclaimer {
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   color: var(--text-light);
   text-align: center;
+  margin-top: 0.35rem;
+}
+
+.notify-field-error {
+  font-size: 0.78rem;
+  color: var(--color-rose);
+  font-weight: 600;
+  margin-top: 0.15rem;
+  display: block;
+}
+
+.notify-success-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1.25rem;
+  border-radius: var(--radius-lg);
+  background: rgba(59, 130, 246, 0.06);
+  border: 1px solid rgba(59, 130, 246, 0.18);
+  gap: 1rem;
+  text-align: center;
+}
+
+.notify-success-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(52, 211, 153, 0.14);
+  color: var(--color-green);
+  border: 1px solid rgba(52, 211, 153, 0.24);
+}
+
+.notify-success-message {
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  line-height: 1.6;
+  max-width: 100%;
+}
+
+.notify-success-btn {
+  width: auto;
+  padding: 0.85rem 1.35rem;
 }
 
 /* BD '26 event strip */

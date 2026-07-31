@@ -249,25 +249,52 @@
     <div class="notify-banner-right">
       <div class="notify-banner-form-card">
         <p class="notify-banner-form-label">Get notified by email</p>
-        <form class="notify-form" id="notify-form">
+        @if (!notifySuccess()) {
+        <form #notifyForm="ngForm" (ngSubmit)="submitNotifyForm(notifyForm)" novalidate class="notify-form">
           <div class="notify-input-wrapper">
             <svg class="notify-input-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
               stroke-width="2">
               <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
               <polyline points="22,6 12,13 2,6"></polyline>
             </svg>
-            <input type="email" placeholder="your@email.com" class="notify-email-input" id="notify-email-input"
-              required>
+            <input type="email" placeholder="your@email.com" name="notifyEmail" [(ngModel)]="notifyEmail"
+              #notifyEmailInput="ngModel" required email class="notify-email-input" id="notify-email-input">
           </div>
-          <button type="submit" class="btn btn-primary notify-btn" id="notify-submit-btn">
+          @if (notifyEmailInput.invalid && notifyEmailInput.touched) {
+          <span class="notify-field-error">Please enter a valid email address.</span>
+          }
+          <button type="submit" class="btn btn-primary notify-btn" id="notify-submit-btn"
+            [disabled]="isNotifySubmitting() || notifyEmailInput.invalid && notifyEmailInput.touched">
+            @if (isNotifySubmitting()) {
+            <div class="form-spinner"></div>
+            <span>Subscribing...</span>
+            } @else {
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
               <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
               <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
             </svg>
             <span>Notify me</span>
+            }
           </button>
+          @if (notifyError()) {
+          <span class="notify-field-error">{{ notifyError() }}</span>
+          }
           <p class="notify-disclaimer">No spam · Unsubscribe any time</p>
         </form>
+        } @else {
+        <div class="notify-success-card">
+          <div class="notify-success-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+          <p class="notify-success-message">You're subscribed! I will email you the next time I'm heading to a meetup.</p>
+          <button type="button" class="btn btn-secondary notify-success-btn" (click)="resetNotifyForm()">
+            Subscribe another email
+          </button>
+        </div>
+        }
       </div>
     </div>
 

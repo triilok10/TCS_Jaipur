@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import emailjs from '@emailjs/browser';
 import { environment } from '../../environments/environment';
 
 export interface EmailPayload {
@@ -22,13 +21,27 @@ export class EmailService {
   private readonly templateId = environment.emailjs.templateId;
   private readonly publicKey = environment.emailjs.publicKey;
 
-  constructor() {
-    if (typeof window !== 'undefined') {
-      emailjs.init(this.publicKey);
+  private emailjs: any | null = null;
+  private emailjsInitialized = false;
+
+  private async ensureEmailJs() {
+    if (this.emailjsInitialized) {
+      return;
     }
+
+    const module = await import('@emailjs/browser');
+    this.emailjs = module.default || module;
+
+    if (typeof window !== 'undefined') {
+      this.emailjs.init(this.publicKey);
+    }
+
+    this.emailjsInitialized = true;
   }
 
   async sendEmail(payload: EmailPayload): Promise<void> {
+    await this.ensureEmailJs();
+
     const messageBody = [
       `Name: ${payload.from_name || '—'}`,
       `Email: ${payload.from_email || '—'}`,
@@ -58,7 +71,7 @@ export class EmailService {
       event_time:      payload.event_time      ?? '—',
     };
 
-    const result = await emailjs.send(this.serviceId, this.templateId, templateParams);
+    const result = await this.emailjs.send(this.serviceId, this.templateId, templateParams);
     if (result.status !== 200) {
       throw new Error(`EmailJS error: ${result.text}`);
     }
