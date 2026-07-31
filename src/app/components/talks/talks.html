@@ -2,7 +2,7 @@
   <div class="container">
     <div class="talks-page-header animate-slide-up">
       <span class="header-badge">Community & Learning Events</span>
-      <h1 class="text-gradient">Learning Stories</h1>
+      <h1 class="text-gradient">Community Chronicles</h1>
       <p>A conceptual showcase of volunteer workshops, speaker sessions, mentorship moments, and learner-focused community interactions.</p>
 
       <div class="nav-back">
@@ -27,11 +27,17 @@
 
     <div class="impact-grid animate-slide-up" style="animation-delay: 0.2s;">
       <div *ngFor="let item of filteredEvents" class="impact-card" (click)="openGalleryModal(item)">
-        <div class="impact-pill">
-          {{ item.eventType | uppercase }} IMPACT
+        <div class="impact-image-wrapper">
+          <img [src]="item.image" [alt]="item.event" loading="lazy" />
+          <div class="people-tag" *ngIf="item.people">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            {{ item.people }}
+          </div>
         </div>
-        <h2 class="impact-title">{{ item.shortCode }}</h2>
-        <p class="impact-subtitle">{{ item.event }}</p>
+        <div class="impact-content">
+          <h2 class="impact-title">{{ item.title }}</h2>
+          <p class="impact-subtitle">{{ item.event }}</p>
+        </div>
       </div>
     </div>
 
