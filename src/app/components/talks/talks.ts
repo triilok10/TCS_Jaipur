@@ -26,93 +26,92 @@ export class Talks {
   categories: string[] = ['All', 'Bharat Dreamin', 'GDG Jaipur', 'Trailblazer Community', 'Local Meetups'];
   activeFilter: string = 'All';
 
-  timelineEvents: TalkPhoto[] = [
-    {
-      year: '2026',
-      title: 'kavindra Patel',
-      event: 'Bharat Dreamin 2026',
-      eventType: 'Bharat Dreamin',
-      description: 'The first major meetup for the Dreamin event.',
-      image: '/BD_5.jpeg',
-      location: 'Main Auditorium',
-      people: 'with Trailblazers',
-      note: 'Kicking off the journey.',
-      shortCode: 'BD \'24'
-    },
-    {
-      year: '2024',
-      title: 'Guilda H.',
-      event: 'Bharat Dreamin 2026',
-      eventType: 'Bharat Dreamin',
-      description: 'Wrap up and celebrations.',
-      image: '/BD_6.jpeg',
-      location: 'Main Stage',
-      people: 'with all volunteers',
-      note: 'A successful event wrap up.',
-      shortCode: 'BD \'24'
-    },
-    {
-      year: '2026',
-      title: 'Gaurav kheterpal',
-      event: 'Bharat Dreamin 2026',
-      eventType: 'Bharat Dreamin',
-      description: 'Presented the ambassador keynote on community-led engineering, volunteer impact, and developer experience.',
-      image: '/BD_1.jpeg',
-      location: 'Jaipur International Exhibitions Centre',
-      people: 'with fellow ambassadors',
-      note: 'Core mission of sharing community-first engineering stories.',
-      shortCode: 'BD \'26'
-    },
-    {
-      year: '2026',
-      title: 'Selfie Booth',
-      event: 'Bharat Dreamin 2026',
-      eventType: 'Bharat Dreamin',
-      description: 'Facilitated a session for volunteers and learners on event operations.',
-      image: '/BD_Volunteer2.jpg',
-      location: 'BD Volunteer Hub',
-      people: 'with volunteer leads',
-      note: 'Highlights the power of volunteer collaboration.',
-      shortCode: 'BD \'26'
-    },
-    {
-      year: '2026',
-      title: 'with Attendees',
-      event: 'Bharat Dreamin 2026',
-      eventType: 'Bharat Dreamin',
-      description: 'Documented volunteer highlights, speaker support, and learner engagement.',
-      image: '/BD_3.jpeg',
-      location: 'Exhibition hall',
-      people: 'with volunteers',
-      note: 'A candid shot of the conference floor.',
-      shortCode: 'BD \'25'
-    },
-    {
-      year: '2026',
-      title: 'Bharat Dreamin 2026 11th July',
-      event: 'Bharat Dreamin 2025',
-      eventType: 'Bharat Dreamin',
-      description: 'Early planning and coordination for the mega event.',
-      image: '/BD_4.jpeg',
-      location: 'Core Team Meetup',
-      people: 'with core organizers',
-      note: 'Strategy and community building.',
-      shortCode: 'BD \'25'
-    },
-    {
-      year: '2026',
-      title: 'Diamond Sponsorship Team (Niyaz Ahmed)',
-      event: 'Bharat Dreamin 2026',
-      eventType: 'GDG Jaipur',
-      description: 'Participated in a speaker roundtable.',
-      image: '/BD_2.jpeg',
-      location: 'GDG Jaipur Conference Hall',
-      people: 'with community organizers',
-      note: 'Volunteering in the local tech ecosystem.',
-      shortCode: 'GDG \'24'
-    }
-  ];
-
+timelineEvents: TalkPhoto[] = [
+  {
+    year: '2026',
+    title: 'Kavindra Patel',
+    event: 'Bharat Dreamin 2026',
+    eventType: 'Bharat Dreamin',
+    description: 'A short selfie moment with Kavindra Patel sir, Head of Trailblazer Event Program at Salesforce, capturing his warm mentorship presence and the joy of meeting him in person.',
+    image: '/BD_5.jpeg',
+    location: 'Networking Lounge',
+    people: 'with Kavindra Patel',
+    note: 'A respectful meet-and-greet with a senior Salesforce leader and keynote speaker.',
+    shortCode: 'BD \'26'
+  },
+  {
+    year: '2026',
+    title: 'Guilda H.',
+    event: 'Bharat Dreamin 2026',
+    eventType: 'Bharat Dreamin',
+    description: 'A quick snapshot with Guilda H., Senior Director of Marketing Evangelism at Salesforce, celebrating the event\'s collaborative spirit and her support for the Dreamin community.',
+    image: '/BD_6.jpeg',
+    location: 'Main Stage',
+    people: 'with Guilda H.',
+    note: 'A candid moment with a keynote speaker and long-time community advocate.',
+    shortCode: 'BD \'26'
+  },
+  {
+    year: '2026',
+    title: 'Gaurav Kheterpal',
+    event: 'Bharat Dreamin 2026',
+    eventType: 'Bharat Dreamin',
+    description: 'A short hello with Gaurav Kheterpal — in the Salesforce ecosystem since 2007, a Salesforce MVP Hall of Fame member and MuleSoft Ambassador, and one of the driving forces behind Bharat Dreamin\' in Jaipur. Nearly two decades of industry experience, and the photo says it all.',
+    image: '/BD_1.jpeg',
+    location: 'Jaipur International Exhibitions Centre',
+    people: 'with Gaurav Kheterpal',
+    note: 'A brief moment with a long-time community leader — the photo captures the experience words can\'t.',
+    shortCode: 'BD \'26'
+  },
+  {
+    year: '2026',
+    title: 'Selfie Booth',
+    event: 'Bharat Dreamin 2026',
+    eventType: 'Bharat Dreamin',
+    description: 'A lively selfie booth moment at Bharat Dreamin, capturing the candid energy and the volunteer-driven event experience.',
+    image: '/BD_Volunteer2.jpg',
+    location: 'Selfie Booth',
+    people: 'selfie booth moment',
+    note: 'A fun keepsake from the event\'s social booth.',
+    shortCode: 'BD \'26'
+  },
+  {
+    year: '2026',
+    title: 'Meeting Er. Jasjit Singh & Yashasvi Sharma',
+    event: 'Bharat Dreamin 2026',
+    eventType: 'Bharat Dreamin',
+    description: 'Finally meeting Er. Jasjit Singh in person after following his Salesforce journey online — a Data Architect and Tech Lead known for his work across OmniStudio and CPQ. Alongside him, Yashasvi Sharma — great to see her again, showing up to support the event with the same energy she brings to the community.',
+    image: '/BD_3.jpeg',
+    location: 'Exhibition Hall',
+    people: 'with Jasjit Singh and Yashasvi Sharma',
+    note: 'A great real-life meetup after connecting online, and a warm reunion with an event supporter.',
+    shortCode: 'BD \'26'
+  },
+  {
+    year: '2026',
+    title: 'Bharat Dreamin 2026 — 11th July',
+    event: 'Bharat Dreamin 2026',
+    eventType: 'Bharat Dreamin',
+    description: 'A planning moment with the core team, including Kumarswami Mathapati — part of the Organising Team for Bharat Dreamin 2026 and a familiar face in the Salesforce Trailblazer community — and Sesha Thamalalla, Director of Community & Ecosystem at Copado and Founder of Bengaluru Dreamin\'.',
+    image: '/BD_4.jpeg',
+    location: 'Core Team Meetup',
+    people: 'with Kumarswami Mathapati and Sesha Thamalalla',
+    note: 'Behind-the-scenes coordination with the organizers and Copado leadership powering the conference.',
+    shortCode: 'BD \'26'
+  },
+  {
+    year: '2026',
+    title: 'Diamond Sponsorship Team (Niyaz Ahmed)',
+    event: 'Bharat Dreamin 2026',
+    eventType: 'Bharat Dreamin',
+    description: 'A moment with Niyaz Ahmed and the team from Workato, Bharat Dreamin\' 2026\'s Diamond Sponsor — celebrating the support that helped bring the conference to life.',
+    image: '/BD_2.jpeg',
+    location: 'Sponsor Reception',
+    people: 'with Niyaz Ahmed',
+    note: 'A grateful snapshot with the Diamond Sponsor team investing in the event\'s success.',
+    shortCode: 'BD \'26'
+  }
+];
   selectedGalleryItem: TalkPhoto | null = null;
 
   get filteredEvents() {
