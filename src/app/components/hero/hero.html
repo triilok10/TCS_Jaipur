@@ -259,6 +259,10 @@
           </button>
         </div>
 
+        @if (modalError()) {
+        <p class="modal-send-error">⚠️ {{ modalError() }}</p>
+        }
+
       </form>
 
       } @else {

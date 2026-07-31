@@ -1,6 +1,7 @@
 import { Component, signal, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
+import { EmailService } from '../../services/email.service';
 
 interface ContactForm {
   name: string;
@@ -27,6 +28,7 @@ export class Hero {
   protected isModalOpen = signal(false);
   protected isModalSubmitting = signal(false);
   protected isModalSubmitted = signal(false);
+  protected modalError = signal<string | null>(null);
 
   protected formData: ContactForm = {
     name: '',
@@ -50,41 +52,31 @@ export class Hero {
 
   protected readonly scheduleRequiredTypes = ['coffee', 'vc', 'collab', 'talk', 'bd26'];
 
+  constructor(private emailService: EmailService) {}
+
   protected needsSchedule(): boolean {
     return this.scheduleRequiredTypes.includes(this.formData.connectionType);
   }
 
   protected getScheduleLabel(): string {
     switch (this.formData.connectionType) {
-      case 'talk':
-        return 'Talk / Event date';
-      case 'bd26':
-        return 'Bharat Dreamin 2026 date';
-      case 'coffee':
-        return 'Preferred meetup date';
-      case 'vc':
-        return 'Preferred call date';
-      case 'collab':
-        return 'Project kickoff date';
-      default:
-        return 'Preferred date';
+      case 'talk':    return 'Talk / Event date';
+      case 'bd26':    return 'Bharat Dreamin 2026 date';
+      case 'coffee':  return 'Preferred meetup date';
+      case 'vc':      return 'Preferred call date';
+      case 'collab':  return 'Project kickoff date';
+      default:        return 'Preferred date';
     }
   }
 
   protected getScheduleTimeLabel(): string {
     switch (this.formData.connectionType) {
-      case 'talk':
-        return 'Talk / Event time';
-      case 'bd26':
-        return 'Bharat Dreamin 2026 time';
-      case 'coffee':
-        return 'Preferred meetup time';
-      case 'vc':
-        return 'Preferred call time';
-      case 'collab':
-        return 'Preferred discussion time';
-      default:
-        return 'Preferred time';
+      case 'talk':    return 'Talk / Event time';
+      case 'bd26':    return 'Bharat Dreamin 2026 time';
+      case 'coffee':  return 'Preferred meetup time';
+      case 'vc':      return 'Preferred call time';
+      case 'collab':  return 'Preferred discussion time';
+      default:        return 'Preferred time';
     }
   }
 
@@ -112,20 +104,43 @@ export class Hero {
     this.formData.connectionType = id;
   }
 
-  protected submitModal(form: NgForm) {
-    if (form.invalid || !this.formData.connectionType || (this.needsSchedule() && (!this.formData.eventDate || !this.formData.eventTime))) {
+  protected async submitModal(form: NgForm) {
+    if (form.invalid || !this.formData.connectionType ||
+        (this.needsSchedule() && (!this.formData.eventDate || !this.formData.eventTime))) {
       Object.keys(form.controls).forEach(k => form.controls[k].markAsTouched());
       return;
     }
+
     this.isModalSubmitting.set(true);
-    setTimeout(() => {
-      this.isModalSubmitting.set(false);
+    this.modalError.set(null);
+
+    try {
+      const connectionLabel = this.connectionTypes.find(t => t.id === this.formData.connectionType)?.label
+                              ?? this.formData.connectionType;
+
+      await this.emailService.sendEmail({
+        from_name:       this.formData.name,
+        from_email:      this.formData.email,
+        mobile:          this.formData.mobile,
+        connection_type: connectionLabel,
+        message:         this.formData.message,
+        event_date:      this.formData.eventDate,
+        event_time:      this.formData.eventTime,
+        to_email:        'ittiku3@gmail.com'
+      });
+
       this.isModalSubmitted.set(true);
-    }, 1200);
+    } catch (err) {
+      console.error('EmailJS error (hero modal):', err);
+      this.modalError.set('Something went wrong. Please try again or email me directly at ittiku3@gmail.com');
+    } finally {
+      this.isModalSubmitting.set(false);
+    }
   }
 
   protected resetModal() {
     this.isModalSubmitted.set(false);
+    this.modalError.set(null);
     this.formData = { name: '', email: '', mobile: '', connectionType: '', message: '', eventDate: '', eventTime: '' };
   }
 

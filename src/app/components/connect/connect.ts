@@ -2,6 +2,7 @@ import { Component, signal, ViewChild, ElementRef, AfterViewChecked } from '@ang
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { EmailService } from '../../services/email.service';
 
 interface TerminalLine {
   text: string;
@@ -43,6 +44,9 @@ export class Connect implements AfterViewChecked {
 
   protected isFormSubmitting = signal(false);
   protected isFormSubmitted = signal(false);
+  protected formError = signal<string | null>(null);
+
+  constructor(private emailService: EmailService) {}
 
   protected needsEventSchedule(): boolean {
     return this.scheduleRequiredTypes.includes(this.formData.subject);
@@ -125,7 +129,7 @@ export class Connect implements AfterViewChecked {
     this.scrollToBottom();
   }
 
-  protected submitContactForm(form: NgForm) {
+  protected async submitContactForm(form: NgForm) {
     if (form.invalid || (this.needsEventSchedule() && (!this.formData.eventDate || !this.formData.eventTime))) {
       Object.keys(form.controls).forEach(key => {
         form.controls[key].markAsTouched();
@@ -134,20 +138,32 @@ export class Connect implements AfterViewChecked {
     }
 
     this.isFormSubmitting.set(true);
+    this.formError.set(null);
 
-    // Simulate sending data to API
-    console.log('Sending message data to API:', this.formData);
-    
-    setTimeout(() => {
-      this.isFormSubmitting.set(false);
+    try {
+      await this.emailService.sendEmail({
+        from_name:  this.formData.name,
+        from_email: this.formData.email,
+        subject:    this.formData.subject,
+        message:    this.formData.message,
+        event_date: this.formData.eventDate,
+        event_time: this.formData.eventTime,
+        to_email:   'ittiku3@gmail.com'
+      });
+
       this.isFormSubmitted.set(true);
-      
+
       // Print notification in the terminal too!
       this.terminalLines.update(lines => [
         ...lines,
         { text: `System: Incoming message from ${this.formData.name} processed successfully!`, type: 'success' }
       ]);
-    }, 1200);
+    } catch (err) {
+      console.error('EmailJS error (connect form):', err);
+      this.formError.set('Something went wrong sending your message. Please try again or email me directly at ittiku3@gmail.com');
+    } finally {
+      this.isFormSubmitting.set(false);
+    }
   }
 
   protected resetContactForm() {
